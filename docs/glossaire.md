@@ -33,7 +33,7 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Définition :** le moment où les secours sont prévenus d'un feu. Ce n'est pas forcément le moment exact où le feu a démarré.
 - **Sources et colonnes :** BDIFF, colonne `Date de première alerte` (date et heure).
 - **Divergences :** la Météo des forêts date ses bulletins par leur diffusion (`date`), la veille du jour du danger ; les données climatologiques datent la pluie de 6 h le jour J à 6 h le lendemain (`AAAAMMJJ`). Les trois « jours » ne se recouvrent pas.
-- **Règle retenue :** jointure avec la Météo des forêts sur `date` + 1 ([journal des décisions, entrée 007](journal-des-decisions.md), proposée).
+- **Règle retenue :** jointure avec la Météo des forêts sur `date` + 1 ([journal des décisions, D016](decisions.md), à décider).
 - **Unité ou granularité :** date et heure, à la minute.
 - **Exemple :** feu 2025-421 à Istres : `2025-01-04 21:48:00`.
 - **Statut :** proposé.
@@ -57,7 +57,7 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Définition :** dans la commande, les Bouches-du-Rhône, territoire dont le SDIS 13 a la charge.
 - **Sources et colonnes :** Météo des forêts `num_dep` (écrit `1` ou `01` selon l'année) ; BDIFF `Département` (`01`, `2A`…) et `Code INSEE` ; interventions SDIS `Numéro` (`13` pour le SDIS 13, `BMPM` pour Marseille) ; données climatologiques, deux premiers chiffres de `NUM_POSTE`.
 - **Divergences :** le département INSEE 13 et le territoire défendu par le SDIS 13 ne coïncident pas : Marseille est défendue par le Bataillon de marins-pompiers de Marseille (BMPM), qui a sa propre ligne dans les interventions SDIS. La Météo des forêts ne donne qu'une valeur pour tout le département, Marseille comprise.
-- **Règle retenue :** proposition dans le [journal des décisions, entrée 005](journal-des-decisions.md) : exclure Marseille (`Code INSEE` 13055) pour Q1 à Q4, garder tout le département pour Q5.
+- **Règle retenue :** à décider ([journal des décisions, D005](decisions.md)) : périmètre du SDIS 13 seul (Marseille exclue par le `Code INSEE` 13055) ou département entier, BMPM compris.
 - **Unité ou granularité :** un département ; une commune pour exclure Marseille.
 - **Exemple :** interventions 2024, `Feux de végétations` : 1 403 pour la ligne `13`, 431 pour la ligne `BMPM`.
 - **Statut :** proposé.
@@ -76,6 +76,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Origine de la définition :** commande de la direction du SDIS 13.
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur, 2026-11-16.
 
+## Fausse alerte
+
+- **Définition :** un jour où le dispositif renforcé aurait été déclenché, parce que le niveau de la Météo des forêts atteignait le seuil, sans qu'aucun départ de feu ne survienne. C'est la première plainte des chefs de centre (« l'indice annonce souvent un danger élevé alors qu'aucun feu ne se déclare »).
+- **Sources et colonnes :** calculée en croisant `niveau_j1` (Météo des forêts) et `Date de première alerte` (BDIFF), par jour et par département.
+- **Divergences :** dépend du seuil choisi, du périmètre (Marseille comprise ou non, D005) et de ce qu'on compte comme départ de feu (tous les feux de la BDIFF, ou seulement ceux au-dessus d'une surface).
+- **Règle retenue :** à décider (Q4, [journal des décisions, D013](decisions.md)).
+- **Unité ou granularité :** un jour, pour un département et un seuil donnés.
+- **Exemple :** à compléter après le croisement 2024-2025.
+- **Statut :** proposé.
+- **Origine de la définition :** commande de la direction ; analyse de Ramdane Chaba (question 3) ; décision du groupe à venir.
+- **Ajouté par :** Ramdane Chaba, 2026-11-17.
+
 ## Feu de forêt
 
 - **Définition :** incendie qui touche un espace naturel boisé ou couvert de végétation (forêt, mais aussi, selon les définitions, garrigue, maquis et landes).
@@ -87,6 +99,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Statut :** à vérifier.
 - **Origine de la définition :** document `Définitions.pdf` fourni dans l'export de la BDIFF (relevé par Ouissem Aouimeur) ; fiche interventions SDIS.
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur, 2026-11-16.
+
+## Feu manqué
+
+- **Définition :** un départ de feu survenu un jour où le niveau de la Météo des forêts était sous le seuil de déclenchement : le dispositif renforcé n'aurait pas été en place. C'est la seconde plainte des chefs de centre (« des feux partis des jours où l'indice était au plus bas »).
+- **Sources et colonnes :** calculé en croisant `Date de première alerte` (BDIFF) et `niveau_j1` (Météo des forêts, jour du danger = `date` + 1, D016).
+- **Divergences :** on peut compter des feux (un jour avec trois feux compte trois fois) ou des jours avec feu (compte une fois) ; les deux mesures ne donnent pas le même résultat.
+- **Règle retenue :** à décider (Q4, [journal des décisions, D013](decisions.md)).
+- **Unité ou granularité :** un feu, ou un jour avec feu, pour un seuil donné.
+- **Exemple :** à compléter après le croisement 2024-2025.
+- **Statut :** proposé.
+- **Origine de la définition :** commande de la direction ; analyses de Ramdane Chaba (question 3) et d'Ouissem Aouimeur (question 3) ; décision du groupe à venir.
+- **Ajouté par :** Ramdane Chaba, Ouissem Aouimeur, 2026-11-17.
 
 ## Feu de végétation (intervention)
 
@@ -129,7 +153,7 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Définition :** prévision quotidienne du danger de feu de forêt publiée par Météo-France pendant la saison, depuis 2023, sur une échelle de quatre niveaux (faible, modéré, élevé, très élevé). Elle s'appuie sur l'Indice de danger intégré (IFM complété par l'état de sécheresse de la végétation) et tient compte de la surface forestière et des zones sensibles de chaque département.
 - **Sources et colonnes :** archives de la Météo des forêts : `date` (date et heure de diffusion du bulletin, en UTC), `num_dep`, `niveau_j1` (danger prévu pour le lendemain), `niveau_j2` (pour le surlendemain), `nom_dep` (`dep_nom` en 2025).
 - **Divergences :** les trois analyses supposaient un découpage par zones à l'intérieur du département : il n'existe que par département. La date du fichier n'est pas le jour du danger : `niveau_j1` s'applique au jour suivant la diffusion. L'archive ouverte commence en 2024, alors que le dispositif existe depuis 2023.
-- **Règle retenue :** jour du danger = `date` + 1 pour `niveau_j1` ([journal des décisions, entrée 007](journal-des-decisions.md), proposée).
+- **Règle retenue :** jour du danger = `date` + 1 pour `niveau_j1` ([journal des décisions, D016](decisions.md), à décider).
 - **Unité ou granularité :** un niveau par bulletin quotidien et par département.
 - **Exemple :** `2025-06-03T14:50:06Z,1,1,1,Ain` : bulletin du 3 juin 2025, danger faible (1) dans l'Ain pour le 4 et le 5 juin.
 - **Statut :** proposé (définition confirmée par la documentation de Météo-France).
@@ -177,7 +201,7 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Définition :** la plus forte pointe de vent de la journée, mesurée à 10 m de hauteur. Le vent favorise la propagation des feux.
 - **Sources et colonnes :** données climatologiques quotidiennes, colonne `FXI3S` (vent moyenné sur 3 secondes, en m/s) ; la colonne `FXI` (vent instantané) donne des valeurs un peu plus fortes.
 - **Divergences :** deux mesures possibles, `FXI` et `FXI3S`.
-- **Règle retenue :** `FXI3S` ([journal des décisions, entrée 008](journal-des-decisions.md), proposée).
+- **Règle retenue :** `FXI3S` ([journal des décisions, D017](decisions.md), à décider).
 - **Unité ou granularité :** m/s, par station et par jour.
 - **Exemple :** Bec de l'Aigle, 2025-07-15 : `FXI3S` = 16,7 m/s (environ 60 km/h).
 - **Statut :** proposé.
