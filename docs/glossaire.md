@@ -1,6 +1,6 @@
 # Glossaire — Provence-Alpes-Côte d'Azur
 
-Dernière mise à jour : 2026-11-16
+Dernière mise à jour : 2026-11-17 (confrontation des questions aux sources : colonnes réelles, divergences et nouveaux termes)
 
 Version 0, construite à partir des trois analyses individuelles de la commande (Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur). Les doublons ont été fusionnés ; la ligne « Ajouté par » indique qui a proposé chaque terme. Tant qu'une définition n'est pas confirmée par la documentation d'un producteur ou par une décision du groupe, son statut reste « à vérifier ».
 
@@ -19,20 +19,32 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 ## Danger élevé (niveau de danger)
 
 - **Définition :** un des niveaux de l'échelle de la Météo des forêts. Dans la commande, l'expression est employée par les chefs de centre (« l'indice annonce souvent un danger élevé ») ; elle s'oppose à l'indice « au plus bas », c'est-à-dire le niveau le plus faible.
-- **Sources et colonnes :** Météo des forêts (Météo-France), colonne du niveau de danger, à identifier.
-- **Divergences :** « danger élevé » peut désigner le niveau nommé « élevé » seulement, ou « élevé et au-dessus » (élevé + très élevé). Il faut aussi savoir si les chefs de centre parlent du niveau prévu la veille ou de celui du jour.
+- **Sources et colonnes :** Météo des forêts, colonnes `niveau_j1` et `niveau_j2` : 1 = faible, 2 = modéré, 3 = élevé, 4 = très élevé.
+- **Divergences :** « danger élevé » peut désigner le niveau 3 seulement, ou « 3 et au-dessus » (élevé + très élevé). Il faut aussi savoir si les chefs de centre parlent du niveau prévu la veille ou de celui du jour.
 - **Règle retenue :** à décider, après échange avec la direction.
 - **Unité ou granularité :** un niveau, pour un jour et un département.
-- **Exemple :** à compléter.
-- **Statut :** à vérifier.
-- **Origine de la définition :** échelle à quatre niveaux de la Météo des forêts (faible, modéré, élevé, très élevé), d'après les communications publiques de Météo-France ; sens employé par les chefs de centre à confirmer.
+- **Exemple :** Bouches-du-Rhône, saison 2025 : 49 jours au niveau 3 et 10 jours au niveau 4 (`niveau_j1`).
+- **Statut :** à vérifier (codes confirmés par la documentation ; sens employé par les chefs de centre à confirmer).
+- **Origine de la définition :** documentation Open Data de Météo-France (archives de la Météo des forêts).
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur, 2026-11-16.
+
+## Date de première alerte
+
+- **Définition :** le moment où les secours sont prévenus d'un feu. Ce n'est pas forcément le moment exact où le feu a démarré.
+- **Sources et colonnes :** BDIFF, colonne `Date de première alerte` (date et heure).
+- **Divergences :** la Météo des forêts date ses bulletins par leur diffusion (`date`), la veille du jour du danger ; les données climatologiques datent la pluie de 6 h le jour J à 6 h le lendemain (`AAAAMMJJ`). Les trois « jours » ne se recouvrent pas.
+- **Règle retenue :** jointure avec la Météo des forêts sur `date` + 1 ([journal des décisions, entrée 007](journal-des-decisions.md), proposée).
+- **Unité ou granularité :** date et heure, à la minute.
+- **Exemple :** feu 2025-421 à Istres : `2025-01-04 21:48:00`.
+- **Statut :** proposé.
+- **Origine de la définition :** document `Définitions.pdf` de la BDIFF (relevé par Ouissem Aouimeur).
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-17.
 
 ## Départ de feu
 
 - **Définition :** feu qui démarre dans un espace naturel, à un lieu et à un moment donnés, quelle que soit la surface qu'il brûle ensuite. C'est l'événement que la direction cherche à prévenir et à combattre.
-- **Sources et colonnes :** à compléter à l'ouverture des sources (bases de feux, données d'intervention du SDIS).
-- **Divergences :** une base de feux recense des feux de forêt (avec parfois un seuil de surface ou de type de végétation), alors que les données d'un SDIS recensent des interventions. Un petit feu éteint en quelques minutes peut figurer dans l'une et pas dans l'autre. La localisation peut être un point précis ou seulement la commune.
+- **Sources et colonnes :** BDIFF, une ligne par feu (`Année`, `Numéro`, `Code INSEE`, `Date de première alerte`) ; interventions SDIS, colonne `Feux de végétations` (un total annuel d'interventions).
+- **Divergences :** la BDIFF recense des feux de forêt, localisés à la commune (pas de coordonnées), datés par la première alerte et non par l'heure réelle du départ. Les interventions SDIS comptent des interventions sur toute végétation, en total annuel. Un même feu peut donner plusieurs interventions, et un petit feu de bord de route peut figurer dans l'une et pas dans l'autre.
 - **Règle retenue :** à décider. Question à poser à la direction : compte-t-elle tous les départs de feu, ou seulement ceux qui ont donné lieu à une intervention ?
 - **Unité ou granularité :** un feu (date, heure, lieu).
 - **Exemple :** à compléter.
@@ -43,13 +55,13 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 ## Département (territoire du SDIS 13)
 
 - **Définition :** dans la commande, les Bouches-du-Rhône, territoire dont le SDIS 13 a la charge.
-- **Sources et colonnes :** à compléter (code département dans les bases de feux et dans la Météo des forêts).
-- **Divergences :** le département INSEE 13 et le territoire défendu par le SDIS 13 ne coïncident pas : Marseille est défendue par le Bataillon de marins-pompiers de Marseille, et non par le SDIS. Compter les feux du code 13 sans distinction attribuerait au SDIS des feux qu'il ne combat pas.
-- **Règle retenue :** à décider. Faut-il exclure Marseille des analyses du SDIS 13, ou la garder pour les comparaisons avec les autres départements ? Décision à consigner dans le journal.
+- **Sources et colonnes :** Météo des forêts `num_dep` (écrit `1` ou `01` selon l'année) ; BDIFF `Département` (`01`, `2A`…) et `Code INSEE` ; interventions SDIS `Numéro` (`13` pour le SDIS 13, `BMPM` pour Marseille) ; données climatologiques, deux premiers chiffres de `NUM_POSTE`.
+- **Divergences :** le département INSEE 13 et le territoire défendu par le SDIS 13 ne coïncident pas : Marseille est défendue par le Bataillon de marins-pompiers de Marseille (BMPM), qui a sa propre ligne dans les interventions SDIS. La Météo des forêts ne donne qu'une valeur pour tout le département, Marseille comprise.
+- **Règle retenue :** proposition dans le [journal des décisions, entrée 005](journal-des-decisions.md) : exclure Marseille (`Code INSEE` 13055) pour Q1 à Q4, garder tout le département pour Q5.
 - **Unité ou granularité :** un département ; une commune pour exclure Marseille.
-- **Exemple :** à compléter.
-- **Statut :** à vérifier.
-- **Origine de la définition :** analyses individuelles de la commande ; périmètre du SDIS 13 à confirmer auprès de la direction.
+- **Exemple :** interventions 2024, `Feux de végétations` : 1 403 pour la ligne `13`, 431 pour la ligne `BMPM`.
+- **Statut :** proposé.
+- **Origine de la définition :** fiche interventions SDIS (ligne BMPM), fiche BDIFF ; périmètre à confirmer auprès de la direction.
 - **Ajouté par :** Ghiles Mekdam, Ouissem Aouimeur, 2026-11-16.
 
 ## Dispositif renforcé
@@ -67,14 +79,26 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 ## Feu de forêt
 
 - **Définition :** incendie qui touche un espace naturel boisé ou couvert de végétation (forêt, mais aussi, selon les définitions, garrigue, maquis et landes).
-- **Sources et colonnes :** BDIFF (base nationale), Prométhée (base des départements méditerranéens) ; colonnes à identifier.
-- **Divergences :** pour Prométhée, un feu de garrigue est un feu de forêt méditerranéenne ; la BDIFF s'appuie sur une définition de la forêt (couvert arboré minimal, surface minimale) et classe certains espaces à part. En Provence, inclure ou non la garrigue et le maquis change fortement le nombre de feux.
-- **Règle retenue :** à décider après lecture des documentations de la BDIFF et de Prométhée.
+- **Sources et colonnes :** BDIFF, filtre « Type de feu : F » de l'export ; la surface est ventilée en `Surface forêt (m2)`, `Surface maquis garrigues (m2)`, `Autres surfaces naturelles hors forêt (m2)`, `Surfaces agricoles (m2)`… ; interventions SDIS, `Feux de végétations`.
+- **Divergences :** d'après le document de définitions de la BDIFF, dans le Sud-Est un feu de garrigue ou de maquis compte comme un feu de forêt (colonne `Surface maquis garrigues (m2)` distincte). Les interventions SDIS comptent les « feux de végétations », catégorie plus large (broussailles, champs, bords de route) et non définie sur la fiche data.gouv : les deux chiffres ne sont pas comparables.
+- **Règle retenue :** à décider. Proposition : un feu de forêt est un feu recensé par la BDIFF, garrigue et maquis compris.
 - **Unité ou granularité :** un feu.
 - **Exemple :** à compléter.
 - **Statut :** à vérifier.
-- **Origine de la définition :** documentations de la BDIFF et de Prométhée, à lire en détail.
+- **Origine de la définition :** document `Définitions.pdf` fourni dans l'export de la BDIFF (relevé par Ouissem Aouimeur) ; fiche interventions SDIS.
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur, 2026-11-16.
+
+## Feu de végétation (intervention)
+
+- **Définition :** catégorie d'intervention des services d'incendie et de secours qui regroupe les feux touchant de la végétation, quelle qu'elle soit. C'est un nombre d'interventions, pas un nombre de feux.
+- **Sources et colonnes :** interventions SDIS, colonne `Feux de végétations` (total annuel par service).
+- **Divergences :** à ne pas confondre avec le feu de forêt de la BDIFF. La catégorie n'est pas définie sur la fiche data.gouv ; elle est absente des fichiers 2010 et 2013.
+- **Règle retenue :** ne pas additionner ni comparer directement avec les feux de la BDIFF.
+- **Unité ou granularité :** un nombre d'interventions, par service et par année.
+- **Exemple :** SDIS 13, 2024 : 1 403 ; BMPM, 2024 : 431.
+- **Statut :** à vérifier (définition du producteur non trouvée).
+- **Origine de la définition :** fiche interventions SDIS.
+- **Ajouté par :** Ramdane Chaba, 2026-11-17.
 
 ## Indice forêt météo (IFM)
 
@@ -102,14 +126,14 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 
 ## Météo des forêts
 
-- **Définition :** prévision quotidienne du danger de feu de forêt publiée par Météo-France pendant la saison, sur une échelle de quatre niveaux (faible, modéré, élevé, très élevé). Elle s'appuie sur l'indice forêt météo et tient compte de la surface forestière et des zones d'activité humaine de chaque département.
-- **Sources et colonnes :** Météo-France, à identifier.
-- **Divergences :** les analyses supposaient un découpage par zones à l'intérieur du département ; les premières recherches indiquent une publication par département. Le niveau est publié pour le lendemain et le surlendemain : il faut savoir lequel est utilisé pour déclencher le dispositif.
-- **Règle retenue :** à décider.
-- **Unité ou granularité :** un niveau par jour et par département (à confirmer).
-- **Exemple :** à compléter.
-- **Statut :** à vérifier (date de lancement annoncée en juin 2023, à confirmer).
-- **Origine de la définition :** communications publiques de Météo-France.
+- **Définition :** prévision quotidienne du danger de feu de forêt publiée par Météo-France pendant la saison, depuis 2023, sur une échelle de quatre niveaux (faible, modéré, élevé, très élevé). Elle s'appuie sur l'Indice de danger intégré (IFM complété par l'état de sécheresse de la végétation) et tient compte de la surface forestière et des zones sensibles de chaque département.
+- **Sources et colonnes :** archives de la Météo des forêts : `date` (date et heure de diffusion du bulletin, en UTC), `num_dep`, `niveau_j1` (danger prévu pour le lendemain), `niveau_j2` (pour le surlendemain), `nom_dep` (`dep_nom` en 2025).
+- **Divergences :** les trois analyses supposaient un découpage par zones à l'intérieur du département : il n'existe que par département. La date du fichier n'est pas le jour du danger : `niveau_j1` s'applique au jour suivant la diffusion. L'archive ouverte commence en 2024, alors que le dispositif existe depuis 2023.
+- **Règle retenue :** jour du danger = `date` + 1 pour `niveau_j1` ([journal des décisions, entrée 007](journal-des-decisions.md), proposée).
+- **Unité ou granularité :** un niveau par bulletin quotidien et par département.
+- **Exemple :** `2025-06-03T14:50:06Z,1,1,1,Ain` : bulletin du 3 juin 2025, danger faible (1) dans l'Ain pour le 4 et le 5 juin.
+- **Statut :** proposé (définition confirmée par la documentation de Météo-France).
+- **Origine de la définition :** présentation PDF et documentation Open Data de Météo-France, fournies avec les archives.
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur, 2026-11-16.
 
 ## Moyens humains et financiers
@@ -124,6 +148,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Origine de la définition :** commande de la direction du SDIS 13.
 - **Ajouté par :** Ghiles Mekdam, Ramdane Chaba, 2026-11-16.
 
+## Nature (cause du feu)
+
+- **Définition :** l'origine présumée d'un feu : accidentelle, involontaire (travaux, particulier), malveillance, naturelle, etc.
+- **Sources et colonnes :** BDIFF, colonne `Nature`.
+- **Divergences :** la colonne est souvent vide : cause inconnue pour 37 % des feux du 13 entre 2006 et 2025, et presque toujours avant 2000. Le formulaire de saisie a changé en 2023.
+- **Règle retenue :** à décider. Proposition : traiter « vide » comme une catégorie « cause inconnue », sans l'exclure.
+- **Unité ou granularité :** une catégorie, par feu.
+- **Exemple :** feu 2025-421 à Istres : `Malveillance`.
+- **Statut :** proposé.
+- **Origine de la définition :** export CSV de la BDIFF (fiche BDIFF).
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-17.
+
 ## Patrouille et guet
 
 - **Définition :** surveillance des massifs pour repérer un départ de feu le plus tôt possible : le guet depuis des postes fixes (tours de guet), les patrouilles par des équipes mobiles.
@@ -135,6 +171,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Statut :** à vérifier.
 - **Origine de la définition :** analyses individuelles de la commande.
 - **Ajouté par :** Ouissem Aouimeur, 2026-11-16.
+
+## Rafale du jour
+
+- **Définition :** la plus forte pointe de vent de la journée, mesurée à 10 m de hauteur. Le vent favorise la propagation des feux.
+- **Sources et colonnes :** données climatologiques quotidiennes, colonne `FXI3S` (vent moyenné sur 3 secondes, en m/s) ; la colonne `FXI` (vent instantané) donne des valeurs un peu plus fortes.
+- **Divergences :** deux mesures possibles, `FXI` et `FXI3S`.
+- **Règle retenue :** `FXI3S` ([journal des décisions, entrée 008](journal-des-decisions.md), proposée).
+- **Unité ou granularité :** m/s, par station et par jour.
+- **Exemple :** Bec de l'Aigle, 2025-07-15 : `FXI3S` = 16,7 m/s (environ 60 km/h).
+- **Statut :** proposé.
+- **Origine de la définition :** descriptif `CLIMATOLOGIE_Donnees_quotidiennes_descriptif.pdf` de Météo-France.
+- **Ajouté par :** Ramdane Chaba, 2026-11-17.
 
 ## Région
 
@@ -175,13 +223,13 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 ## Surface brûlée
 
 - **Définition :** la surface parcourue par un feu, en hectares. Elle permet de distinguer les nombreux petits feux des grands incendies.
-- **Sources et colonnes :** bases de feux, colonnes à identifier.
-- **Divergences :** la surface peut être mesurée (relevé de terrain, image satellite) ou estimée ; elle peut ne compter que la forêt ou toute la végétation brûlée.
-- **Règle retenue :** à décider.
+- **Sources et colonnes :** BDIFF, `Surface parcourue (m2)` (surface totale), ventilée en `Surface forêt (m2)`, `Surface maquis garrigues (m2)`, etc. ; `Précision des surfaces` indique « Estimées » ou « Mesurées ».
+- **Divergences :** le fichier donne les surfaces en m², le site de la BDIFF les affiche en hectares. Une partie des surfaces est estimée, une autre mesurée. La surface totale inclut aussi des surfaces agricoles ou artificialisées.
+- **Règle retenue :** à décider. Proposition : utiliser `Surface parcourue (m2)` convertie en hectares (÷ 10 000).
 - **Unité ou granularité :** hectare, par feu.
-- **Exemple :** à compléter.
-- **Statut :** à vérifier.
-- **Origine de la définition :** analyses individuelles de la commande.
+- **Exemple :** feu 2025-421 à Istres : `Surface parcourue (m2)` = 200 (0,02 ha), dont 173 m² de forêt, surfaces « Mesurées ».
+- **Statut :** proposé.
+- **Origine de la définition :** export CSV de la BDIFF (fiche BDIFF).
 - **Ajouté par :** Ouissem Aouimeur, 2026-11-16.
 
 ## Territoire national
