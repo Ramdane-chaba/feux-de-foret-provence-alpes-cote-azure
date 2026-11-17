@@ -55,3 +55,41 @@ Pour chaque question, la donnée qu'il vous faudrait idéalement pour répondre.
 | 2 | Niveau quotidien de la Météo des forêts, croisé avec les départs de feu du même jour | Un jour dans une zone de prévision : niveau de l'indice, nombre de feux | Toutes les saisons depuis la création de l'indice | Quotidienne en saison | Bouches-du-Rhône |
 | 3 | Les mêmes données que la question 2, plus le coût d'une journée de renfort | Un jour dans une zone : niveau, feux ; un type de moyen : coût par jour | Les mêmes années que Q2, budget 2027 | Annuelle | Bouches-du-Rhône |
 | 4 | Niveau quotidien de l'indice et départs de feu, pour tous les départements | Un jour dans un département : niveau de l'indice, nombre de feux | Les mêmes années que Q2 | Annuelle | France entière (PACA en détail) |
+
+## 5. Confronter mes questions aux sources
+
+Sources de l'inventaire du groupe : **BDIFF** (fiche d'Ouissem), **Météo des forêts** (fiche de Ghiles), **Données climatologiques** (fiche de Ramdane), **Interventions SIS** (fiche de Ramdane).
+
+Degrés : **complet** / **partiel** / **absent** / **inconnu**. Chaque degré cite la rubrique de la fiche ou la colonne du fichier qui le justifie.
+
+### La matrice
+
+| Question | BDIFF | Météo des forêts | Données climatologiques | Interventions SIS |
+|---|---|---|---|---|
+| **1. Où** sont les feux les plus fréquents et les plus étendus dans le 13 (communes ou massifs) | **partiel** : `Code INSEE`, `Date de première alerte` et `Surface parcourue (m2)` donnent chaque feu par commune. Mais le CSV n'a **pas de coordonnées** (aucune colonne de latitude ou longitude parmi les 24), et **pas de massif**. | **absent** : une seule valeur par département (`num_dep`), et aucun feu. | **absent** : des mesures météo par station (`NUM_POSTE`, `AAAAMMJJ`), et aucun feu. | **absent** : rubrique Grain = un service × une année, pas de commune. |
+| **2. Seuil** : pour chaque niveau de l'indice, la part des jours avec au moins un feu | **partiel** : `Date de première alerte` et `Département` permettent de savoir quels jours ont eu un feu, mais la source ne contient pas le niveau de l'indice. | **partiel** : `niveau_j1` par `num_dep` et par jour, mais **seulement 3 saisons** (rubrique Période : 2024 à 2026, soit 371 jours pour le 13), de **juin à septembre** uniquement, et à l'échelle du **département**, pas d'une zone. | **partiel** (donnée indirecte) : `RR`, `TX`, `FFM`, `UN` permettraient de recalculer un indice proche de l'IFM sur une période plus longue, mais la méthode n'est pas vérifiée (rubrique Questions de la fiche). | **absent** : rubrique Grain = totaux annuels, pas de jour. |
+| **3. Budget** : jours de renfort par seuil, feux partis sous le seuil, coût d'une journée | **partiel** : `Date de première alerte` permet de compter les feux partis sous un seuil, une fois croisée avec la Météo des forêts. Pas de coût. | **partiel** : `niveau_j1` permet de compter les jours où chaque niveau est atteint, sur 3 saisons seulement. Pas de coût. | **absent** : aucune colonne de coût ni de moyens. | **absent** : rubrique Grain = nombre d'interventions par an, pas de coût ni de jour. |
+| **4. Comparaison** : à niveau égal, l'indice annonce-t-il aussi bien les feux dans le 13, en PACA et en France ? | **partiel** : `Département` et `Date de première alerte` couvrent toute la France, mais l'export est limité à 30 000 lignes (rubrique Mode d'accès), et la source ne contient pas le niveau de l'indice. | **partiel** : 96 départements (rubrique Emprise), mais 3 saisons seulement et pas d'outre-mer. | **partiel** (donnée indirecte) : un fichier par département pour toute la France, mais 1,2 million de lignes pour le 13 seul (rubrique Volumétrie). | **absent** : `Feux de végétations` donne des totaux annuels par département. Ça permet de comparer des volumes d'interventions, mais pas le comportement de l'indice « à niveau égal », car il n'y a pas de jour. |
+
+**Aucune de mes questions n'a de source « complet ».** Chacune appelle donc une décision.
+
+### Mes décisions
+
+| Question | Décision | Pourquoi | Ce que ça coûte |
+|---|---|---|---|
+| **1. Où** | **renoncer en partie : reformuler au grain de la commune** | La BDIFF localise les feux à la commune (`Code INSEE`), pas au massif ni au point précis. La question devient : « dans quelles **communes** du 13 les feux sont-ils les plus fréquents et les plus étendus ? ». | On ne pourra pas parler de massifs, alors qu'un massif s'étend souvent sur plusieurs communes. Il faudra aussi décider si on garde Marseille (code `13055`), défendue par les marins-pompiers. |
+| **2. Seuil** | **approximer** : croiser la BDIFF et la Météo des forêts sur les 3 saisons disponibles, puis chercher un historique plus long avec l'IFM (de Copernicus, ou recalculé avec les données climatologiques) | Les archives de la Météo des forêts ne commencent qu'en 2024. | 3 saisons, c'est peu, surtout pour le niveau 4, qui est rare. L'IFM mesure mal le danger réel : il ne prend en compte que la météo, alors que la Météo des forêts ajoute l'état de sécheresse de la végétation et un ajustement par département (d'après la fiche de Ghiles). |
+| **3. Budget** | **collecter** le coût d'une journée de renfort auprès du SDIS 13, et en attendant **approximer** en comptant seulement les jours de renfort | Aucune source ne contient de coût. C'est une donnée interne au SDIS. | Sans le coût, on peut dire « ce seuil demande X jours de renfort », mais pas « ce seuil coûte X euros ». La direction devra faire elle-même la conversion. |
+| **4. Comparaison** | **approximer** : comparer le 13, PACA et la France métropolitaine sur les 3 saisons communes (2024 à 2026), avec la BDIFF et la Météo des forêts | Ce sont les deux seules sources qui ont à la fois le jour et le département. | Seulement 3 saisons, et pas d'outre-mer. L'export national de la BDIFF devra être découpé en plusieurs fichiers à cause de la limite de 30 000 lignes. |
+
+### L'écart entre ce que j'avais prévu et ce qui existe
+
+- **Ce que j'avais bien prévu** : l'historique court de la Météo des forêts (j'avais noté « peut-être récente, à vérifier ») et le coût du renfort introuvable en open data.
+- **Ce que j'avais imaginé et qui n'existe pas** :
+  - des feux avec leurs **coordonnées** ;
+  - un **découpage en massifs** ;
+  - un indice par **zone de prévision**. En réalité, il n'y a qu'une valeur par département.
+- **Ce que je n'avais pas prévu** :
+  - la date de la Météo des forêts est la date de diffusion, et le niveau concerne le lendemain ;
+  - Marseille est défendue par les marins-pompiers, pas par le SDIS 13 ;
+  - la cause du feu manque dans 37 % des cas pour le 13.
