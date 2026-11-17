@@ -84,7 +84,7 @@ Degrés : **complet** / **partiel** / **absent** / **inconnu**. Chaque degré ci
 
 ### L'écart entre ce que j'avais prévu et ce qui existe
 
-- **Ce que j'avais bien prévu** : l'historique court de la Météo des forêts (j'avais noté « peut-être récente, à vérifier ») et le coût du renfort introuvable en open data.
+- **Ce que j'avais bien prévu** : je me demandais depuis quelle date existe la Météo des forêts (section 2), et en effet son historique est court. J'avais aussi noté que le coût d'une journée de renfort manquait dans la commande (section 3) : aucune source ne le donne.
 - **Ce que j'avais imaginé et qui n'existe pas** :
   - des feux avec leurs **coordonnées** ;
   - un **découpage en massifs** ;
