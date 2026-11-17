@@ -104,3 +104,112 @@ Chaque décision est datée, motivée et attribuée. Une décision remplacée n'
 - **Constat** : le README impose que toute modification passe par une pull request relue par le responsable du rôle concerné. Les PR #1 (analyse de Ramdane) et #2 (fiches de sources de Ramdane) ont été mergées par leur auteur.
 - **Décision** : à partir de maintenant, personne ne merge sa propre PR. Les PR de Ramdane sont relues et mergées par Ghiles ou Ouissem.
 - **Statut** : décidé
+
+---
+
+## D010 – Q1 Où : reformuler au grain de la commune
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM, Ramdane CHABA, Ouissem AOUIMEUR (section 5 de leurs analyses), synthèse dans la [matrice](sources/matrice.md)
+- **Question** : Q1 Où.
+- **Manque** : la BDIFF localise chaque feu à la commune (`Code INSEE`), sans coordonnées ni massif. Aucune source de l'inventaire ne donne le contour des massifs.
+- **Décision** : renoncer en partie. La question devient « dans quelles **communes** du 13 les départs de feu sont-ils les plus fréquents et les plus étendus, et reviennent-ils d'une année sur l'autre ? ». Si le temps le permet, collecter le contour des massifs (BD Forêt ou plans de protection des forêts contre l'incendie, cités dans le défi) pour regrouper les communes.
+- **Raison** : Ghiles et Ramdane proposaient d'utiliser la commune comme proxy du massif, Ouissem de reformuler. Reformuler est plus honnête : on ne prétend pas parler de massifs avec une donnée qui ne les contient pas.
+- **Ce qu'elle coûte** : la direction raisonne en massifs, pas en communes. Un massif s'étend sur plusieurs communes, et les grandes communes (Marseille, Aix-en-Provence, Arles avec la Camargue) mélangent des zones très différentes. Dépend aussi de D005 (Marseille).
+- **Statut** : à décider (groupe)
+
+---
+
+## D011 – Q2 Quand : la date d'alerte comme proxy du départ du feu
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ramdane CHABA (section 5 de son analyse) ; vérification de l'heure par Ghiles MEKDAM
+- **Question** : Q2 Quand.
+- **Manque** : la BDIFF date chaque feu par sa première alerte, pas par son heure réelle de départ. La saison 2026 n'est pas publiée. Ramdane avait noté les heures « inconnu » : l'export CSV ouvert le 2026-11-17 montre que `Date de première alerte` contient l'heure (ex. `2025-01-04 21:48:00`).
+- **Décision** : approximer. Utiliser `Date de première alerte` (mois, jour de la semaine, heure) à la place du départ du feu, sur 2006-2025.
+- **Raison** : c'est la seule date disponible pour chaque feu ; la vérification préalable demandée par Ramdane est faite.
+- **Ce qu'elle coûte** : l'alerte arrive après le début du feu ; l'écart n'est pas mesurable avec nos sources. Pas de saison 2026.
+- **Statut** : à décider (groupe)
+
+---
+
+## D012 – Q3 Seuil : deux saisons croisables, puis un proxy
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM, Ramdane CHABA, Ouissem AOUIMEUR (section 5 de leurs analyses)
+- **Question** : Q3 Seuil.
+- **Manque** : la Météo des forêts couvre 2024, 2025 et 2026, sans 2023 ; la BDIFF s'arrête en 2025. Seules **deux** saisons se croisent (240 jours pour le 13), et non trois comme l'écrivait l'analyse de Ouissem. Le niveau 4 n'apparaît que 10 jours dans le 13 sur ces deux saisons.
+- **Décision** : approximer, puis collecter. Croiser Météo des forêts et BDIFF sur 2024-2025 (jointure D016). Rallonger l'historique avec l'Indice forêt météo (IFM, Copernicus, ou recalculé à partir des données climatologiques quotidiennes), après avoir vérifié la faisabilité du calcul. Demander la saison 2023 à Météo-France.
+- **Raison** : deux saisons ne suffisent pas pour fixer un seuil solide, surtout pour les niveaux élevés.
+- **Ce qu'elle coûte** : l'IFM ne reflète pas l'expertise des prévisionnistes ni l'ajustement par département de la Météo des forêts ; il faudra recréer quatre niveaux en fixant des bornes, ce qui ajoute une hypothèse. Si on rallonge l'historique, la période de D006 est à revoir pour le 13.
+- **Statut** : à décider (groupe)
+
+---
+
+## D013 – Q4 Budget : collecter le coût, raisonner en jours de renfort
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM, Ramdane CHABA, Ouissem AOUIMEUR (section 5 de leurs analyses)
+- **Question** : Q4 Budget.
+- **Manque** : aucune source ne contient le coût d'une journée de dispositif renforcé, le budget de la saison ni le seuil actuel.
+- **Décision** : collecter ces trois informations auprès de la direction du SDIS 13. En attendant, approximer : présenter chaque seuil en nombre de jours de renfort, de fausses alertes et de feux manqués, sans conversion en euros.
+- **Raison** : ce sont des données internes au SDIS ; les trois analyses arrivent à la même conclusion.
+- **Ce qu'elle coûte** : sans le coût, on peut dire « ce seuil demande X jours de renfort », pas « ce seuil coûte X euros » : la direction fera la conversion. Dépend du délai de réponse avant le 11 décembre.
+- **Statut** : à décider (groupe)
+
+---
+
+## D014 – Q5 Comparaison : jour par jour sur 2024-2025, volumes annuels sur la durée
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM, Ramdane CHABA, Ouissem AOUIMEUR (section 5 de leurs analyses)
+- **Question** : Q5 Comparaison.
+- **Manque** : la Météo des forêts ne couvre que trois saisons (deux croisables) ; la BDIFF est limitée à 30 000 lignes par export ; les interventions SDIS sont annuelles ; aucune source ne donne la surface forestière par département.
+- **Divergence** : Ramdane proposait de limiter la comparaison jour par jour à PACA et de comparer la France seulement à l'année ; Ouissem de comparer toute la France jour par jour sur trois saisons ; Ghiles de comparer tous les départements sur 2024-2025. Retour au fichier : un export BDIFF de toute la France pour 2025 compte **2 541 feux**, bien sous la limite de 30 000 lignes. La comparaison nationale jour par jour est donc faisable avec un export par année.
+- **Décision** : approximer. Comparer le 13, les cinq autres départements de PACA et la France métropolitaine en jours avec feu par niveau de danger, sur 2024-2025 (Météo des forêts × BDIFF, un export BDIFF par année). Compléter par une comparaison des volumes annuels d'interventions (`Feux de végétations`) sur plusieurs années, sans lien avec l'indice. Collecter la surface forestière par département (Corine Land Cover ou BD Forêt) pour rapporter les feux à la forêt disponible.
+- **Raison** : seules la Météo des forêts et la BDIFF ont à la fois le jour et le département.
+- **Ce qu'elle coûte** : deux saisons ne distinguent pas une vraie différence d'une variation d'une année à l'autre. Sans surface forestière, un département très boisé paraîtra avoir plus de feux. Le nombre de feux 2024 pour la France reste à vérifier à l'export. Pas d'outre-mer. Dépend de D005 (périmètre du 13).
+- **Statut** : à décider (groupe)
+
+---
+
+## D015 – Arbitrage des degrés divergents dans la matrice
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM, à partir des trois matrices individuelles
+- **Question** : Q2, Q3, Q4 et Q5.
+- **Manque** : nos matrices individuelles donnaient des degrés différents pour quatre cellules.
+- **Décision** : après retour aux fichiers (détail dans la [matrice](sources/matrice.md), section « Les divergences ») :
+  - Q2 × BDIFF : **partiel** (l'heure est bien présente ; l'« inconnu » est levé) ;
+  - Q4 × données climatologiques : **partiel** (indirect, comme pour Q3), et non absent ;
+  - Q5 × interventions SDIS : **partiel** (comparaison des volumes seulement), et non absent ;
+  - Q3 et Q5 × Météo des forêts : **deux** saisons croisables avec la BDIFF, et non trois.
+- **Raison** : la consigne demande de retourner au fichier quand les degrés divergent.
+- **Ce qu'elle coûte** : les sections 5 des analyses individuelles gardent leurs degrés d'origine (elles ne sont pas corrigées) : la matrice du groupe fait foi.
+- **Statut** : à décider (groupe)
+
+---
+
+## D016 – Jointure entre la Météo des forêts et les feux
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ghiles MEKDAM (fiche Météo des forêts), repris par Ouissem AOUIMEUR (fiche BDIFF)
+- **Question** : Q3, Q4 et Q5.
+- **Manque** : la colonne `date` de la Météo des forêts est la date de diffusion du bulletin, et `niveau_j1` concerne le lendemain. Le code département s'écrit `1` ou `01` selon l'année.
+- **Décision** : joindre le jour de `Date de première alerte` (BDIFF) au jour de `date` + 1 (Météo des forêts), sur le code département harmonisé à deux caractères (`01`, `2A`, `2B`, `13`…).
+- **Raison** : une jointure directe sur la date décalerait toute l'analyse d'un jour.
+- **Ce qu'elle coûte** : on utilise la prévision de la veille, pas un niveau observé le jour même.
+- **Statut** : à décider (groupe)
+
+---
+
+## D017 – Rafale du jour : utiliser `FXI3S`
+
+- **Date** : 2026-11-17
+- **Proposé par** : Ramdane CHABA (fiche données climatologiques quotidiennes)
+- **Question** : Q2 et Q3 (données climatologiques).
+- **Manque** : le fichier contient deux mesures de vent fort, `FXI` et `FXI3S`.
+- **Décision** : utiliser `FXI3S`.
+- **Raison** : le descriptif de Météo-France le désigne comme le « champ utilisé pour caractériser la rafale quotidienne ».
+- **Ce qu'elle coûte** : des valeurs un peu plus faibles que `FXI` (16,7 m/s contre 18,1 m/s au Bec de l'Aigle le 2025-07-15).
+- **Statut** : à décider (groupe)
