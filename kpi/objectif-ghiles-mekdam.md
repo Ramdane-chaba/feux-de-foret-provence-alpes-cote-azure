@@ -1,4 +1,4 @@
-# De ma question à un objectif – Ghiles MEKDAM
+# Hypothèse et objectif SMART – Ghiles MEKDAM
 
 Exercice 2, le 2026-11-18.
 Supports : ma question analytique 4 ([analyse de la commande](../docs/analyse/commande-ghiles-mekdam.md), Q4 Budget dans la liste commune) et le [diagnostic stratégique](diagnostic.md) du groupe.
@@ -7,7 +7,36 @@ Supports : ma question analytique 4 ([analyse de la commande](../docs/analyse/co
 
 > Pour chaque seuil de déclenchement possible, combien de jours de dispositif renforcé aurait-il fallu par été, et quelle part des départs de feu ce dispositif aurait-il couverte ?
 
-Je pars de cette question plutôt que de celle sur les fausses alertes, car elle relie directement les deux contraintes de la commande : le seuil et le budget. Dans les archives de la Météo des forêts, un même seuil (niveau 3) donne 19 jours de renfort en 2024 et 59 en 2025. Le nombre de jours ne peut donc pas être laissé de côté.
+Je pars de cette question plutôt que de celle sur les fausses alertes, car elle relie directement les deux contraintes de la commande : le seuil et le budget.
+
+## Mon hypothèse
+
+> **Hypothèse** : un seuil fixe ne permet pas de tenir un budget fixe. Pour un même niveau de déclenchement, le nombre de jours de renfort varie trop d'une saison à l'autre pour qu'un seuil suffise, à lui seul, à respecter le budget de la saison.
+
+- **La pièce qui la fonde** : la commande dit que « notre budget ne nous permet pas de renforcer le dispositif sur tout le département pendant tout l'été ». Le budget est donc un plafond de jours de renfort, alors que le seuil est une règle météo : rien ne garantit que les deux coïncident chaque année.
+- **Confirmée si** : pour les seuils qui économisent vraiment des jours (niveau 3 et niveau 4), la part des jours de saison déclenchés varie au moins du simple au double entre deux saisons.
+- **Infirmée si** : pour chaque seuil, cette part varie de moins de 25 % d'une saison à l'autre. Un seuil donnerait alors un nombre de jours prévisible, et choisir le seuil reviendrait à choisir le budget.
+
+### Confrontation aux données
+
+Archives de la Météo des forêts, Bouches-du-Rhône, bulletins de la saison (`niveau_j1`). Je compte la part des jours plutôt que le nombre de jours, car la saison 2026 a été publiée plus longtemps (131 bulletins contre 120).
+
+| Seuil | 2024 (120 jours) | 2025 (120 jours) | 2026 (131 jours) | Écart entre la saison la plus basse et la plus haute |
+|---|---|---|---|---|
+| Niveau 2 ou plus | 87 jours (73 %) | 94 jours (78 %) | 120 jours (92 %) | × 1,3 |
+| Niveau 3 ou plus | 19 jours (16 %) | 59 jours (49 %) | 63 jours (48 %) | **× 3,1** |
+| Niveau 4 | 0 jour (0 %) | 10 jours (8 %) | 16 jours (12 %) | **de 0 à 16 jours** |
+
+**Verdict : confirmée.** Au niveau 3, la part des jours déclenchés est multipliée par 3,1 entre 2024 et 2025. Au niveau 4, le dispositif n'aurait pas été déclenché une seule fois en 2024, puis 16 fois en 2026. Seul le niveau 2 est à peu près stable, mais il déclenche le renfort les trois quarts de la saison ou plus : il ne fait presque aucune économie.
+
+**Les limites de ce verdict** :
+- trois saisons seulement : 2024 a peut-être été une saison particulièrement calme, ce que je ne peux pas vérifier sans historique plus long ;
+- je compte des bulletins à l'échelle du département : le budget réel dépend aussi de l'étendue du renfort (tout le 13 ou seulement certaines zones) ;
+- le coût d'une journée de renfort n'est pas connu (D013) : je raisonne en jours, pas en euros.
+
+### Ce que ça change pour mon objectif
+
+Le nombre de jours de renfort ne dépend pas que du seuil, il dépend aussi de la saison. La condition de mon objectif SMART (« sans dépasser [J] jours de renfort ») ne peut donc pas être garantie par le choix du seuil seul : je la vérifie saison par saison, et je prévois une règle pour les saisons sèches où le plafond est atteint avant la fin de l'été (par exemple, ne renforcer que les communes prioritaires de la question Q1 au-delà de [J] jours).
 
 ## 1. La décision que la réponse permet de prendre
 
