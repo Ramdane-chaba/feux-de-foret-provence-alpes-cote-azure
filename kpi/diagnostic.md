@@ -1,7 +1,7 @@
 # Diagnostic stratégique – SDIS 13, saison feux 2027
 
 Dernière mise à jour : 2026-11-18
-Auteurs : Ramdane CHABA, Ghiles MEKDAM, Ouissem AOUIMEUR (brouillon à compléter en groupe)
+Auteurs : Ramdane CHABA, Ghiles MEKDAM, Ouissem AOUIMEUR 
 
 Sources : la commande de la direction du SDIS 13, les fiches de `docs/sources/`, la [matrice](../docs/sources/matrice.md) et le [journal des décisions](../docs/decisions.md).
 Statut « établi » = citation de la commande ou résultat vérifié dans nos fiches. Statut « supposé » = notre lecture, à confirmer.
