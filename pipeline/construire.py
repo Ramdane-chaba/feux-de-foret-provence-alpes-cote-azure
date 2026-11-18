@@ -13,7 +13,10 @@ import duckdb
 
 from pipeline import telecharger
 from pipeline.bronze import charger_bronze
-from pipeline.chemins import BASE, SQL
+from pipeline.chemins import BASE, RACINE, SQL
+from pipeline.qualite import EchecBloquant, barriere, ecrire_rapport
+
+RAPPORT = RACINE / "docs" / "qualite" / "rapport-qualite.md"
 
 
 def table_existe(con: duckdb.DuckDBPyConnection, schema: str, table: str) -> bool:
@@ -37,8 +40,11 @@ def executer_couche(con: duckdb.DuckDBPyConnection, couche: str) -> None:
         con.execute(fichier.read_text(encoding="utf-8"))
 
 
-def construire(base: Path = BASE, telecharger_sources: bool = True) -> str:
-    """Construit la base et renvoie l'identifiant de l'exécution."""
+def construire(base: Path = BASE, telecharger_sources: bool = True, rapport: Path | None = RAPPORT) -> str:
+    """Construit la base, écrit le rapport de qualité et renvoie l'identifiant de l'exécution.
+
+    Lève EchecBloquant si une règle de qualité « block » échoue (le rapport est écrit quand même).
+    """
     if telecharger_sources:
         try:
             telecharger.main()
@@ -47,15 +53,33 @@ def construire(base: Path = BASE, telecharger_sources: bool = True) -> str:
     run_id = uuid.uuid4().hex[:12]
     date_chargement = datetime.now().replace(microsecond=0)
     base.parent.mkdir(parents=True, exist_ok=True)
+    resultats = []
     with duckdb.connect(str(base)) as con:
         print(f"Exécution {run_id}")
-        charger_bronze(con, run_id, date_chargement)
-        print("Silver")
-        executer_couche(con, "silver")
-        print("Gold")
-        executer_couche(con, "gold")
+        arret = None
+        try:
+            charger_bronze(con, run_id, date_chargement)
+            print("Qualité : extraction")
+            barriere(con, "extraction", resultats)
+            print("Silver")
+            executer_couche(con, "silver")
+            print("Gold")
+            executer_couche(con, "gold")
+            print("Qualité : modèle")
+            barriere(con, "modele", resultats)
+        except EchecBloquant as echec:
+            arret = str(echec)
+            raise
+        finally:
+            if rapport is not None:
+                ecrire_rapport(con, resultats, rapport, run_id, arret)
+                print(f"Rapport de qualité : {rapport}")
     return run_id
 
 
 if __name__ == "__main__":
-    construire(telecharger_sources="--hors-ligne" not in sys.argv)
+    try:
+        construire(telecharger_sources="--hors-ligne" not in sys.argv)
+    except EchecBloquant as echec:
+        print(f"ARRÊT : règle de qualité bloquante en échec : {echec}")
+        sys.exit(1)
