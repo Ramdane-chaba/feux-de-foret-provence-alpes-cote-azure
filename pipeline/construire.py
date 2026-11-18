@@ -52,6 +52,8 @@ def construire(base: Path = BASE, telecharger_sources: bool = True) -> str:
         charger_bronze(con, run_id, date_chargement)
         print("Silver")
         executer_couche(con, "silver")
+        print("Gold")
+        executer_couche(con, "gold")
     return run_id
 
 
