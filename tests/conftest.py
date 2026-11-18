@@ -13,7 +13,7 @@ def base(tmp_path_factory):
     if not (DATA_RAW / "meteo-des-forets").exists():
         pytest.skip("data/raw/ vide : lancer `uv run python -m pipeline.telecharger`")
     chemin = tmp_path_factory.mktemp("base") / "test.duckdb"
-    return chemin, construire(chemin, telecharger_sources=False)
+    return chemin, construire(chemin, telecharger_sources=False, rapport=None)
 
 
 @pytest.fixture(scope="session")
