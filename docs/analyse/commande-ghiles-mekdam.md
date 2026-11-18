@@ -25,7 +25,7 @@ Quatre questions dont la réponse aiderait la direction à trancher.
 
 ## 2. Les termes inconnus
 
-Les mots de la commande que vous ne savez pas définir précisément, ou qui peuvent se comprendre de plusieurs façons.
+Les mots de la commande que je ne sais pas définir précisément, ou qui peuvent se comprendre de plusieurs façons.
 
 | Terme | Ce que je crois qu'il veut dire | Ce qu'il faudrait vérifier |
 |---|---|---|
@@ -59,7 +59,7 @@ Ce qui manque dans la commande pour y répondre (une information, une précision
 
 ## 4. Les données
 
-Pour chaque question, la donnée qu'il vous faudrait idéalement pour répondre.
+Pour chaque question, la donnée qu'il me faudrait idéalement pour répondre.
 
 | Question | Donnée idéale | Grain (une ligne = ?) | Période | Fraîcheur | Emprise géographique |
 |---|---|---|---|---|---|
