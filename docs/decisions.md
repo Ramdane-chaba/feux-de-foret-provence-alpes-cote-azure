@@ -213,3 +213,17 @@ Chaque décision est datée, motivée et attribuée. Une décision remplacée n'
 - **Raison** : le descriptif de Météo-France le désigne comme le « champ utilisé pour caractériser la rafale quotidienne ».
 - **Ce qu'elle coûte** : des valeurs un peu plus faibles que `FXI` (16,7 m/s contre 18,1 m/s au Bec de l'Aigle le 2025-07-15).
 - **Statut** : à décider (groupe)
+
+---
+
+## D018 – Stack technique : Python et DuckDB
+
+- **Date** : 2026-11-18
+- **Proposé par** : Ghiles MEKDAM, à valider avec Ouissem AOUIMEUR (responsable pipeline et modèle, D001)
+- **Question** : toutes (chargement et assemblage des sources).
+- **Manque** : aucun outil n'était choisi pour charger les quatre sources et construire le [modèle de données](modele-donnees.md).
+- **Décision** : Python 3.13 (dépendances gérées avec `uv`), base DuckDB dans un seul fichier, transformations en SQL en trois couches (`staging`, `core`, `marts`), contrôles qualité lancés par `pytest`, analyses dans des notebooks.
+- **Raison** : les volumes sont petits (quelques millions de lignes au plus) ; DuckDB lit directement les `.csv.gz` avec leurs deux séparateurs et n'exige aucun serveur, donc chaque membre reconstruit la base sur sa machine avec une seule commande.
+- **Alternative écartée** : PostgreSQL dans Docker, plus proche d'un entrepôt réel mais plus lourd à installer pour les trois membres, sans gain sur ces volumes.
+- **Ce qu'elle coûte** : la base n'est pas partagée en ligne ; chacun doit relancer le pipeline après un changement. Les exports BDIFF restent téléchargés à la main (le site impose un formulaire).
+- **Statut** : à décider (groupe)
