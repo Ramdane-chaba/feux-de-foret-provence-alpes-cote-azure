@@ -61,7 +61,9 @@ def test_journal_une_ligne_par_fichier(con, run_id):
         [run_id],
     ).fetchall()
     charges = [l for l in lignes if l[4] == "charge"]
-    assert len(charges) == 3 + 4 + 17
+    # 3 Météo des forêts + 4 climatologie + 17 interventions, plus les exports BDIFF quand il y en a.
+    bdiff = [l for l in charges if not l[0].startswith(("mdf_", "Q_", "interventions_"))]
+    assert len(charges) == 3 + 4 + 17 + len(bdiff)
     assert all(len(l[1]) == 64 and l[2] > 0 and l[3] > 0 for l in charges)
     # Le journal compte les mêmes lignes que les tables.
     assert sum(l[3] for l in charges if l[0].startswith("mdf_")) == 35_616
