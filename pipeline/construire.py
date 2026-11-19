@@ -2,6 +2,8 @@
 
     uv run python -m pipeline.construire              (télécharge ce qui manque, puis construit)
     uv run python -m pipeline.construire --hors-ligne (construit avec les fichiers présents)
+
+Les tables gold sont ensuite exportées en Parquet dans data/exports/ pour Power BI.
 """
 
 import sys
@@ -13,7 +15,8 @@ import duckdb
 
 from pipeline import telecharger
 from pipeline.bronze import charger_bronze
-from pipeline.chemins import BASE, RACINE, SQL
+from pipeline.chemins import BASE, EXPORTS, RACINE, SQL
+from pipeline.exporter import exporter_parquet
 from pipeline.qualite import EchecBloquant, barriere, ecrire_rapport
 
 RAPPORT = RACINE / "docs" / "qualite" / "rapport-qualite.md"
@@ -40,10 +43,17 @@ def executer_couche(con: duckdb.DuckDBPyConnection, couche: str) -> None:
         con.execute(fichier.read_text(encoding="utf-8"))
 
 
-def construire(base: Path = BASE, telecharger_sources: bool = True, rapport: Path | None = RAPPORT) -> str:
-    """Construit la base, écrit le rapport de qualité et renvoie l'identifiant de l'exécution.
+def construire(
+    base: Path = BASE,
+    telecharger_sources: bool = True,
+    rapport: Path | None = RAPPORT,
+    exports: Path | None = EXPORTS,
+) -> str:
+    """Construit la base, écrit le rapport de qualité, exporte gold en Parquet et renvoie l'identifiant de l'exécution.
 
     Lève EchecBloquant si une règle de qualité « block » échoue (le rapport est écrit quand même).
+    L'export n'a lieu qu'après la barrière « modèle » : un fichier Parquet ne contient jamais de données
+    qui ont échoué à une règle bloquante. Sans exports (None), rien n'est écrit.
     """
     if telecharger_sources:
         try:
@@ -67,6 +77,9 @@ def construire(base: Path = BASE, telecharger_sources: bool = True, rapport: Pat
             executer_couche(con, "gold")
             print("Qualité : modèle")
             barriere(con, "modele", resultats)
+            if exports is not None:
+                print(f"Export Parquet : {exports}")
+                exporter_parquet(con, exports)
         except EchecBloquant as echec:
             arret = str(echec)
             raise
