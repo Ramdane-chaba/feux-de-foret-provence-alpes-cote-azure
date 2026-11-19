@@ -36,6 +36,11 @@ def base_synthetique():
     con.execute("CREATE TABLE gold.mart_seuil AS SELECT '13' AS code_dep, 3 AS seuil, sum(78::BIGINT) AS jours_declenches")
     con.execute("CREATE TABLE gold.mart_commune_annee AS SELECT '13055' AS code_insee, 'L''Isle' AS nom_commune, 1.5 AS surface_ha")
     con.execute("CREATE VIEW gold.v_q2_quand AS SELECT '13' AS code_dep, 14 AS heure, 7::BIGINT AS nb_feux")
+    con.execute(
+        "CREATE TABLE gold.fait_feu_enrichi AS SELECT 2025 AS annee, '1' AS numero, '13001' AS code_insee, "
+        "TIMESTAMP '2025-07-15 14:20:00' AS alerte, 3 AS niveau, 1.2 AS surface_ha, true AS est_commune_prioritaire"
+    )
+    con.execute("CREATE TABLE gold.ref_communes_prioritaires AS SELECT '13001' AS code_insee, 'Aix-en-Provence' AS nom_commune")
     yield con
     con.close()
 
