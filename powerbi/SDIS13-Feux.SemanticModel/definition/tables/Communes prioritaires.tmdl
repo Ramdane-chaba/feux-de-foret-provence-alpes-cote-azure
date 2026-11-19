@@ -1,0 +1,31 @@
+/// Les 18 communes prioritaires de l'objectif O1 (gold.ref_communes_prioritaires).
+table 'Communes prioritaires'
+	lineageTag: 216a910a-9d2e-5e41-8fd4-e7e7dd47667c
+
+	column code_insee
+		dataType: string
+		lineageTag: 4af915e9-82bd-55ca-b759-bfab9bdf5119
+		summarizeBy: none
+		sourceColumn: code_insee
+
+		annotation SummarizationSetBy = User
+
+	column nom_commune
+		dataType: string
+		lineageTag: 2a4756ff-6df9-564f-bc38-487fc417d0bf
+		summarizeBy: none
+		sourceColumn: nom_commune
+
+		annotation SummarizationSetBy = User
+
+	partition 'Communes prioritaires' = m
+		mode: import
+		source =
+				let
+					Source = Parquet.Document(File.Contents(DossierExports & "ref_communes_prioritaires.parquet")),
+					Colonnes = Table.SelectColumns(Source, {"code_insee", "nom_commune"}),
+					Types = Table.TransformColumnTypes(Colonnes, {{"code_insee", type text}, {"nom_commune", type text}})
+				in
+					Types
+
+	annotation PBI_ResultType = Table

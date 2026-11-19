@@ -1,0 +1,48 @@
+/// Départements de métropole, tirés de gold.mart_jour_departement (un par code).
+table Departement
+	lineageTag: 853677b0-880b-599b-852d-266efd3439ce
+
+	column code_dep
+		dataType: string
+		lineageTag: ab376ba1-dd14-5287-9809-4c78233049bc
+		summarizeBy: none
+		sourceColumn: code_dep
+
+		annotation SummarizationSetBy = User
+
+	column nom_departement
+		dataType: string
+		lineageTag: 40d51e20-a18b-5298-b4c7-cb1bf9041323
+		summarizeBy: none
+		sourceColumn: nom_departement
+
+		annotation SummarizationSetBy = User
+
+	column est_paca
+		dataType: boolean
+		isHidden
+		lineageTag: f56d9816-5b19-5d38-82da-adbee5239a39
+		summarizeBy: none
+		sourceColumn: est_paca
+
+		annotation SummarizationSetBy = User
+
+	column zone = IF ( Departement[est_paca], "PACA", "Reste de la France" )
+		dataType: string
+		lineageTag: 829064ee-9487-55f9-8596-624500a4fc8f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	partition Departement = m
+		mode: import
+		source =
+				let
+					Source = Parquet.Document(File.Contents(DossierExports & "mart_jour_departement.parquet")),
+					Colonnes = Table.SelectColumns(Source, {"code_dep", "nom_departement", "est_paca"}),
+					Types = Table.TransformColumnTypes(Colonnes, {{"code_dep", type text}, {"nom_departement", type text}, {"est_paca", type logical}}),
+					Resultat = Table.Distinct(Types, {"code_dep"})
+				in
+					Resultat
+
+	annotation PBI_ResultType = Table

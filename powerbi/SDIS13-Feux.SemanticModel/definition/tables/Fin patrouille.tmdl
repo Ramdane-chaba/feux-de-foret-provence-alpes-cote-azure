@@ -1,0 +1,18 @@
+/// Heure de fin des patrouilles (exclue).
+table 'Fin patrouille'
+	lineageTag: b408b295-b59c-5283-b8a9-892aaaadfaff
+
+	column 'Heure de fin'
+		dataType: int64
+		formatString: 0
+		lineageTag: 956bc990-178b-5727-b6d4-d9ff7e7a262c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Fin patrouille' = calculated
+		mode: import
+		source = GENERATESERIES ( 1, 24, 1 )
+
+	annotation PBI_ResultType = Table

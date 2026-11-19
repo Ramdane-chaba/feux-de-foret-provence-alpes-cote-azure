@@ -1,0 +1,193 @@
+/// Un département de métropole par jour, 2006-2026 (gold.mart_jour_departement).
+table Jours
+	lineageTag: d860ac47-f813-532f-aac8-1e1ff1cde6bc
+
+	column code_dep
+		dataType: string
+		lineageTag: 2677ea44-4a46-5a72-bd9f-3dd5d5486c2b
+		summarizeBy: none
+		sourceColumn: code_dep
+
+		annotation SummarizationSetBy = User
+
+	column nom_departement
+		dataType: string
+		isHidden
+		lineageTag: 00c5b419-3a9d-5d28-bbcb-4431bdb4634f
+		summarizeBy: none
+		sourceColumn: nom_departement
+
+		annotation SummarizationSetBy = User
+
+	column est_paca
+		dataType: boolean
+		isHidden
+		lineageTag: 45eb5aa8-8b52-58b3-9f5f-64491acde5bd
+		summarizeBy: none
+		sourceColumn: est_paca
+
+		annotation SummarizationSetBy = User
+
+	column jour
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: b540cfb7-a67b-51cf-a3fc-c9879e0af1e9
+		summarizeBy: none
+		sourceColumn: jour
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ecc0656-4ec8-502f-a84b-9e9b0fba6328
+		summarizeBy: none
+		sourceColumn: annee
+
+		annotation SummarizationSetBy = User
+
+	column mois
+		dataType: int64
+		formatString: 0
+		lineageTag: 230b8b82-30b8-5597-a188-5693dc6eba2b
+		summarizeBy: none
+		sourceColumn: mois
+
+		annotation SummarizationSetBy = User
+
+	column jour_semaine
+		dataType: int64
+		formatString: 0
+		lineageTag: c6a09b5a-7239-5a0a-bc5b-a30357f07756
+		summarizeBy: none
+		sourceColumn: jour_semaine
+
+		annotation SummarizationSetBy = User
+
+	column niveau
+		dataType: int64
+		formatString: 0
+		lineageTag: e6fc6c88-cda4-51d3-b40b-1b70b668377d
+		summarizeBy: none
+		sourceColumn: niveau
+
+		annotation SummarizationSetBy = User
+
+	column feux_connus
+		dataType: boolean
+		lineageTag: 5ca73554-c579-5892-846c-90c1ba9506ab
+		summarizeBy: none
+		sourceColumn: feux_connus
+
+		annotation SummarizationSetBy = User
+
+	column nb_feux
+		dataType: int64
+		formatString: #,0
+		lineageTag: 76457b82-4edf-587b-879e-06ca932885e7
+		summarizeBy: none
+		sourceColumn: nb_feux
+
+		annotation SummarizationSetBy = User
+
+	column surface_ha
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9ea62df9-f72d-5cca-8ced-b07f434cae38
+		summarizeBy: none
+		sourceColumn: surface_ha
+
+		annotation SummarizationSetBy = User
+
+	column nb_feux_hors_marseille
+		dataType: int64
+		formatString: #,0
+		lineageTag: dd0a71b3-d64f-5c7a-bedc-a45ddf3d2177
+		summarizeBy: none
+		sourceColumn: nb_feux_hors_marseille
+
+		annotation SummarizationSetBy = User
+
+	column surface_ha_hors_marseille
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c030a34b-4d2b-5411-abe2-e57694251160
+		summarizeBy: none
+		sourceColumn: surface_ha_hors_marseille
+
+		annotation SummarizationSetBy = User
+
+	column jour_avec_feu
+		dataType: boolean
+		lineageTag: 2ce3686c-2046-5de7-a502-48a3ced18655
+		summarizeBy: none
+		sourceColumn: jour_avec_feu
+
+		annotation SummarizationSetBy = User
+
+	column jour_avec_feu_hors_marseille
+		dataType: boolean
+		lineageTag: b31c78a4-0545-5773-b7cc-4bf763a4071e
+		summarizeBy: none
+		sourceColumn: jour_avec_feu_hors_marseille
+
+		annotation SummarizationSetBy = User
+
+	column rr_veille_mm
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 61e2f028-337f-5e7b-9b7b-303f66d3c034
+		summarizeBy: none
+		sourceColumn: rr_veille_mm
+
+		annotation SummarizationSetBy = User
+
+	column tx_max_c
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 6bf80b8b-1746-5de2-a026-981984151cc4
+		summarizeBy: none
+		sourceColumn: tx_max_c
+
+		annotation SummarizationSetBy = User
+
+	column fxi3s_max_ms
+		dataType: double
+		formatString: #,0.0
+		lineageTag: f0f832ab-b637-59f1-ad59-d8376a2b523e
+		summarizeBy: none
+		sourceColumn: fxi3s_max_ms
+
+		annotation SummarizationSetBy = User
+
+	column un_min_pct
+		dataType: double
+		formatString: #,0
+		lineageTag: 34bafb34-8c6e-5a23-90da-bf5cbabc1a82
+		summarizeBy: none
+		sourceColumn: un_min_pct
+
+		annotation SummarizationSetBy = User
+
+	column nb_stations
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8d74dcfb-cf90-5a08-8c25-4b304462a000
+		summarizeBy: none
+		sourceColumn: nb_stations
+
+		annotation SummarizationSetBy = User
+
+	partition Jours = m
+		mode: import
+		source =
+				let
+					Source = Parquet.Document(File.Contents(DossierExports & "mart_jour_departement.parquet")),
+					Colonnes = Table.SelectColumns(Source, {"code_dep", "nom_departement", "est_paca", "jour", "annee", "mois", "jour_semaine", "niveau", "feux_connus", "nb_feux", "surface_ha", "nb_feux_hors_marseille", "surface_ha_hors_marseille", "jour_avec_feu", "jour_avec_feu_hors_marseille", "rr_veille_mm", "tx_max_c", "fxi3s_max_ms", "un_min_pct", "nb_stations"}),
+					Types = Table.TransformColumnTypes(Colonnes, {{"code_dep", type text}, {"nom_departement", type text}, {"est_paca", type logical}, {"jour", type date}, {"annee", Int64.Type}, {"mois", Int64.Type}, {"jour_semaine", Int64.Type}, {"niveau", Int64.Type}, {"feux_connus", type logical}, {"nb_feux", Int64.Type}, {"surface_ha", type number}, {"nb_feux_hors_marseille", Int64.Type}, {"surface_ha_hors_marseille", type number}, {"jour_avec_feu", type logical}, {"jour_avec_feu_hors_marseille", type logical}, {"rr_veille_mm", type number}, {"tx_max_c", type number}, {"fxi3s_max_ms", type number}, {"un_min_pct", type number}, {"nb_stations", Int64.Type}})
+				in
+					Types
+
+	annotation PBI_ResultType = Table

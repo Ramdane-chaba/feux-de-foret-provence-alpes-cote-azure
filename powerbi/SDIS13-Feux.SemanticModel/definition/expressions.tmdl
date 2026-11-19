@@ -1,0 +1,6 @@
+/// Dossier des fichiers Parquet écrits par le pipeline (data/exports/ du dépôt), terminé par une barre oblique inverse.
+expression DossierExports = "C:\Users\VOTRE_NOM\feux-de-foret-provence-alpes-cote-azure\data\exports\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: bf914700-2aaf-51e5-9bb8-005a6ea2b85e
+
+	annotation PBI_ResultType = Text
+

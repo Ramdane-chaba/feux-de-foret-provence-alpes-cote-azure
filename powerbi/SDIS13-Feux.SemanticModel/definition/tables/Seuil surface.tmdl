@@ -1,0 +1,18 @@
+/// Valeurs possibles du seuil de surface S (fiche I1).
+table 'Seuil surface'
+	lineageTag: 2387360f-0dff-514e-9de6-c8fe0efb7a82
+
+	column Hectares
+		dataType: double
+		formatString: 0.0
+		lineageTag: 4cf01048-bb2d-59c0-bc84-38fbeb8319c6
+		summarizeBy: none
+		sourceColumn: [Hectares]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Seuil surface' = calculated
+		mode: import
+		source = DATATABLE ( "Hectares", DOUBLE, { { 0.5 }, { 1 }, { 5 } } )
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,20 @@
+relationship 4e1ab7e3-8ad6-52af-868e-2c6740ce9058
+	fromColumn: Feux.code_dep
+	toColumn: Departement.code_dep
+
+relationship 443da617-af52-57a5-9d28-11787bc2a7e4
+	fromColumn: Jours.code_dep
+	toColumn: Departement.code_dep
+
+relationship 6239933b-06d5-5119-9634-91ef795c4c56
+	fromColumn: Feux.annee
+	toColumn: 'Année'.annee
+
+relationship ce0891b8-21ab-5818-89e2-1042206dcd44
+	fromColumn: Jours.annee
+	toColumn: 'Année'.annee
+
+relationship 66b39027-472a-5296-8557-d572daa1c1fc
+	fromColumn: Feux.code_insee
+	toColumn: 'Communes prioritaires'.code_insee
+

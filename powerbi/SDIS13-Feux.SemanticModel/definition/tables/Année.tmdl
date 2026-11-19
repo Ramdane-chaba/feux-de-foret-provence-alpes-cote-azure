@@ -1,0 +1,23 @@
+/// Années 2006 à 2026 (période de dim_jour).
+table 'Année'
+	lineageTag: 4953a065-0540-54fa-9843-5a62d6391ab4
+
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d8463c3-c5be-5c67-bc21-dbd2e94c603e
+		summarizeBy: none
+		sourceColumn: annee
+
+		annotation SummarizationSetBy = User
+
+	partition 'Année' = m
+		mode: import
+		source =
+				let
+					Source = Table.FromList({2006..2026}, Splitter.SplitByNothing(), {"annee"}),
+					Types = Table.TransformColumnTypes(Source, {{"annee", Int64.Type}})
+				in
+					Types
+
+	annotation PBI_ResultType = Table

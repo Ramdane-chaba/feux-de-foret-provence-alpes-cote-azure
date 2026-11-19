@@ -1,0 +1,24 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DossierExports", "Feux", "Jours", "Communes prioritaires", "Departement", "Année"]
+
+ref table Feux
+ref table Jours
+ref table 'Communes prioritaires'
+ref table Departement
+ref table 'Année'
+ref table 'Seuil N'
+ref table 'Début patrouille'
+ref table 'Fin patrouille'
+ref table 'Seuil surface'
+ref table Indicateurs
+

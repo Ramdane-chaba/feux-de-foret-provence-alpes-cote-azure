@@ -1,0 +1,153 @@
+/// Un départ de feu de la BDIFF par ligne, avec le niveau de danger de son jour (gold.fait_feu_enrichi).
+table Feux
+	lineageTag: 42182f70-67db-53f7-8af5-1f8d41966969
+
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: 63681a63-869f-5f4f-95e5-81a6ee59fae3
+		summarizeBy: none
+		sourceColumn: annee
+
+		annotation SummarizationSetBy = User
+
+	column numero
+		dataType: string
+		isHidden
+		lineageTag: 907e5239-ca3e-5eeb-98a5-a94d9665c33e
+		summarizeBy: none
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = User
+
+	column code_dep
+		dataType: string
+		lineageTag: ceed4ee2-ee67-5a3d-a71a-53df23db36ce
+		summarizeBy: none
+		sourceColumn: code_dep
+
+		annotation SummarizationSetBy = User
+
+	column code_insee
+		dataType: string
+		lineageTag: b332fcae-ee54-57ac-9568-adf8e12ab5e7
+		summarizeBy: none
+		sourceColumn: code_insee
+
+		annotation SummarizationSetBy = User
+
+	column nom_commune
+		dataType: string
+		lineageTag: 54cb8b9e-248c-58ac-b2e7-39637a931373
+		summarizeBy: none
+		sourceColumn: nom_commune
+
+		annotation SummarizationSetBy = User
+
+	column alerte
+		dataType: dateTime
+		formatString: dd/mm/yyyy hh:nn
+		lineageTag: eba0164b-2bda-57ad-8bab-51163f545ad6
+		summarizeBy: none
+		sourceColumn: alerte
+
+		annotation SummarizationSetBy = User
+
+	column jour
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: bb540918-c1fc-5fac-821b-468a918f9512
+		summarizeBy: none
+		sourceColumn: jour
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column mois
+		dataType: int64
+		formatString: 0
+		lineageTag: acd5f8ca-b415-59b3-b818-39de0a673231
+		summarizeBy: none
+		sourceColumn: mois
+
+		annotation SummarizationSetBy = User
+
+	column jour_semaine
+		dataType: int64
+		formatString: 0
+		lineageTag: 02ebd02d-5b24-5cd9-80d4-f4d725270868
+		summarizeBy: none
+		sourceColumn: jour_semaine
+
+		annotation SummarizationSetBy = User
+
+	column heure
+		dataType: int64
+		formatString: 0
+		lineageTag: 780b7003-c91b-5d91-95fc-d5b9e9072407
+		summarizeBy: none
+		sourceColumn: heure
+
+		annotation SummarizationSetBy = User
+
+	column niveau
+		dataType: int64
+		formatString: 0
+		lineageTag: fbf78e69-59cc-5d3c-943e-21b0680b34b4
+		summarizeBy: none
+		sourceColumn: niveau
+
+		annotation SummarizationSetBy = User
+
+	column dans_periode_bulletin
+		dataType: boolean
+		lineageTag: 7a799bc4-f086-53b4-b5c9-2a9522607269
+		summarizeBy: none
+		sourceColumn: dans_periode_bulletin
+
+		annotation SummarizationSetBy = User
+
+	column surface_ha
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d64e57cf-fd44-59a4-9f26-946b88846924
+		summarizeBy: none
+		sourceColumn: surface_ha
+
+		annotation SummarizationSetBy = User
+
+	column est_marseille
+		dataType: boolean
+		lineageTag: ae36bc2c-239f-5285-8a78-ec58b3597283
+		summarizeBy: none
+		sourceColumn: est_marseille
+
+		annotation SummarizationSetBy = User
+
+	column est_commune_prioritaire
+		dataType: boolean
+		lineageTag: dce6b6e6-21a6-5965-8a92-dde12cbdb094
+		summarizeBy: none
+		sourceColumn: est_commune_prioritaire
+
+		annotation SummarizationSetBy = User
+
+	column statut_commune = IF ( Feux[est_marseille], "Marseille (BMPM)", IF ( Feux[est_commune_prioritaire], "18 communes prioritaires", "Autres communes" ) )
+		dataType: string
+		lineageTag: 0ce47835-b7cb-5948-a650-eeb4c7bf3abb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	partition Feux = m
+		mode: import
+		source =
+				let
+					Source = Parquet.Document(File.Contents(DossierExports & "fait_feu_enrichi.parquet")),
+					Colonnes = Table.SelectColumns(Source, {"annee", "numero", "code_dep", "code_insee", "nom_commune", "alerte", "jour", "mois", "jour_semaine", "heure", "niveau", "dans_periode_bulletin", "surface_ha", "est_marseille", "est_commune_prioritaire"}),
+					Types = Table.TransformColumnTypes(Colonnes, {{"annee", Int64.Type}, {"numero", type text}, {"code_dep", type text}, {"code_insee", type text}, {"nom_commune", type text}, {"alerte", type datetime}, {"jour", type date}, {"mois", Int64.Type}, {"jour_semaine", Int64.Type}, {"heure", Int64.Type}, {"niveau", Int64.Type}, {"dans_periode_bulletin", type logical}, {"surface_ha", type number}, {"est_marseille", type logical}, {"est_commune_prioritaire", type logical}})
+				in
+					Types
+
+	annotation PBI_ResultType = Table

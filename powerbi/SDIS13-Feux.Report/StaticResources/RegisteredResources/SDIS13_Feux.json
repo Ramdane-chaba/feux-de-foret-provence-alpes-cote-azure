@@ -1,0 +1,71 @@
+{
+  "name": "SDIS13 Feux",
+  "dataColors": [
+    "#E4572E",
+    "#8D99AE",
+    "#14213D",
+    "#F3A712",
+    "#2A9D8F",
+    "#B23A48",
+    "#6C757D",
+    "#F7C59F",
+    "#3D5A80",
+    "#98C1D9"
+  ],
+  "foreground": "#14213D",
+  "foregroundNeutralSecondary": "#5C6B7A",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F4F1EC",
+  "tableAccent": "#E4572E",
+  "good": "#2A9D8F",
+  "neutral": "#F3A712",
+  "bad": "#E4572E",
+  "textClasses": {
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#5C6B7A"
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F4F1EC"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F4F1EC"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}
