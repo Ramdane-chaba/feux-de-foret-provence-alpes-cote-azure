@@ -86,6 +86,8 @@ flowchart LR
     mSE[mart_seuil]
     mCA[mart_commune_annee]
     vQ2[v_q2_quand]
+    rCP[ref_communes_prioritaires]
+    fFE2[fait_feu_enrichi]
   end
   MDF --> bMDF --> fND
   CLI --> bRR --> fMJ
@@ -107,6 +109,10 @@ flowchart LR
   fFE --> mCA
   dCO --> mCA
   fFE --> vQ2
+  fFE --> fFE2
+  fND --> fFE2
+  dCO --> fFE2
+  rCP --> fFE2
 ```
 
 | Table gold | Répond à | Construite à partir de |
@@ -115,6 +121,8 @@ flowchart LR
 | `mart_seuil` | Q3, Q4, Q5 | `mart_jour_departement` (saisons 2024 et 2025) |
 | `mart_commune_annee` | Q1 (D010) | `fait_feu`, `dim_commune` |
 | `v_q2_quand` (vue) | Q2 (D011) | `fait_feu` |
+| `fait_feu_enrichi` | Q1, Q2, Q3, Q4 : les indicateurs I1, I2 et I3, un feu par ligne | `fait_feu`, `fait_niveau_danger` (D016), `dim_commune`, `ref_communes_prioritaires` |
+| `ref_communes_prioritaires` | Q1 : les 18 communes de l'objectif O1 | liste figée (codes INSEE) |
 
 Les interventions (`fait_interventions_an`) servent directement la comparaison des volumes annuels de Q5 (D014), sans lien avec l'indice.
 
@@ -164,6 +172,8 @@ Le rapport Power BI ne lit pas la base DuckDB : il lit un fichier Parquet par ta
 
 | Fichier | Table gold |
 |---|---|
+| `fait_feu_enrichi.parquet` | `gold.fait_feu_enrichi` |
+| `ref_communes_prioritaires.parquet` | `gold.ref_communes_prioritaires` |
 | `mart_jour_departement.parquet` | `gold.mart_jour_departement` |
 | `mart_seuil.parquet` | `gold.mart_seuil` |
 | `mart_commune_annee.parquet` | `gold.mart_commune_annee` |
@@ -171,13 +181,31 @@ Le rapport Power BI ne lit pas la base DuckDB : il lit un fichier Parquet par ta
 
 Dans Power BI Desktop : *Obtenir des données → Parquet*, puis le fichier.
 
+### Calculer les indicateurs dans Power BI
+
+Les marts sont agrégés (par jour, par commune et par année, par heure) : ils ne suffisent pas pour I1, qui compte les feux de plus de 1 ha par commune, ni pour I2, qui croise l'heure d'alerte et le niveau du jour. `fait_feu_enrichi` garde un feu par ligne (10 789 lignes pour l'export PACA 2006-2025), avec le niveau de danger de son jour. Les trois indicateurs s'y calculent en mesures, et leurs paramètres (S, P, N) peuvent devenir des segments du rapport.
+
+Filtre commun : `code_dep = "13"` et `annee` dans 2024, 2025.
+
+| Indicateur | Numérateur | Dénominateur | Valeur attendue |
+|---|---|---|---|
+| **I1** (O1) | feux avec `est_commune_prioritaire` et `surface_ha > S`, hors Marseille (`est_marseille` faux) | feux avec `est_commune_prioritaire`, hors Marseille | S = 1 ha : 16 / 242 = 6,6 % (autres communes : 8 / 208 = 3,8 %) |
+| **I2** (O2) | feux avec `niveau >= N` et `heure` dans P | feux avec `niveau >= N` | N = 3, P = 12 h - 20 h : 113 / 177 = 63,8 % |
+| **I3** (O3) | feux avec `niveau >= N` | feux avec `dans_periode_bulletin` | N = 3 : 177 / 355 = 49,9 % |
+
+Le coût d'I3 en jours de renfort (78 jours au niveau 3 sur 2024-2025) se lit dans `mart_seuil` (`jours_declenches`), et les jours sans feu dans `mart_jour_departement`.
+
+`niveau` vaut NULL pour un feu parti hors de la période de publication de l'indice (134 des 489 feux du 13 en 2024-2025) : ces feux sortent du dénominateur d'I2 et d'I3, comme dans les fiches. `heure` vient de la date de première alerte (D011), dont le fuseau horaire n'est pas vérifié.
+
+La liste des 18 communes prioritaires est figée dans `sql/gold/45_ref_communes_prioritaires.sql`, et non recalculée à chaque exécution : I1 porte ainsi toujours sur les mêmes communes d'une saison à l'autre.
+
 - **L'export n'a lieu qu'après la barrière « modèle »** : si une règle « block » échoue, aucun fichier n'est réécrit et les fichiers de l'exécution précédente restent en place.
 - **Aucun fichier à moitié écrit** : chaque fichier est écrit sous un nom provisoire (`.part`), puis renommé.
 - **Types** : les colonnes `HUGEINT` (sommes d'entiers dans DuckDB) sont exportées en `BIGINT`, que Power BI sait lire. Les autres types sont conservés : dates, booléens, NULL et codes en texte (`13055`).
 - **Lignes triées sur toutes les colonnes** : deux exécutions sur les mêmes données donnent le même contenu.
 - `data/exports/` n'est pas versionné, comme le reste de `data/`.
 
-Les tests (`tests/test_export.py`) vérifient, pour chaque table, que le fichier existe, qu'il a les mêmes colonnes, les mêmes types et exactement les mêmes lignes que la table gold, et que les chiffres des fiches d'indicateurs s'y retrouvent (240 bulletins du 13 sur 2024-2025, 78 jours au niveau 3 ou plus, 489 feux, dont 355 dans la période de publication et 177 un jour de niveau 3 ou plus).
+Les tests (`tests/test_export.py`) vérifient, pour chaque table, que le fichier existe, qu'il a les mêmes colonnes, les mêmes types et exactement les mêmes lignes que la table gold, et que les chiffres des fiches d'indicateurs s'y retrouvent (240 bulletins du 13 sur 2024-2025, 78 jours au niveau 3 ou plus, 489 feux, dont 355 dans la période de publication et 177 un jour de niveau 3 ou plus). `tests/test_kpi_parquet.py` recalcule I1, I2 et I3 à partir des seuls fichiers Parquet, pour chaque valeur de paramètre des fiches, et retrouve les valeurs des fiches.
 
 ## 7. Limites connues
 
