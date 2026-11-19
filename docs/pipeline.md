@@ -1,6 +1,6 @@
 # Pipeline de données
 
-Dernière mise à jour : 2026-11-18
+Dernière mise à jour : 2026-11-19
 
 Ce document explique comment reconstruire la base `data/sdis13.duckdb` à partir des sources, ce que contient chaque couche, et ce que le pipeline ne sait pas faire. Il met en œuvre le [modèle de données](modele-donnees.md) (branche `docs/modele-donnees`) et la pile de [D018](decisions.md) : Python 3.13, `uv`, DuckDB, `pytest`.
 
@@ -17,7 +17,8 @@ Cette seule commande :
 1. télécharge dans `data/raw/` ce qui manque (Météo des forêts, climatologie, interventions SDIS), en lisant les URL dans l'API de data.gouv.fr ;
 2. charge bronze, contrôle le schéma et les volumes (barrière « extraction ») ;
 3. construit silver puis gold ;
-4. contrôle le modèle (barrière « modèle ») et écrit [`docs/qualite/rapport-qualite.md`](qualite/rapport-qualite.md).
+4. contrôle le modèle (barrière « modèle ») et écrit [`docs/qualite/rapport-qualite.md`](qualite/rapport-qualite.md) ;
+5. exporte les tables gold en Parquet dans `data/exports/`, pour Power BI (section 6).
 
 Elle se relance sans risque : toutes les tables sont recréées (`CREATE OR REPLACE`), sauf le journal de chargement, qui garde l'historique. Une reconstruction complète prend environ 45 secondes.
 
@@ -157,9 +158,30 @@ Les règles sont dans `pipeline/qualite.py`. Chacune a une portée (la table et 
 
 Le rapport [`docs/qualite/rapport-qualite.md`](qualite/rapport-qualite.md) est régénéré à chaque exécution.
 
-## 6. Limites connues
+## 6. Export pour Power BI
 
-- **BDIFF manuelle** : sans export déposé, les tables de feux sont vides et les colonnes de feux de gold valent NULL (jamais 0) : `feux_connus` indique si les feux d'un département et d'une année sont chargés. Les noms de colonnes BDIFF utilisés en silver viennent de la fiche et du glossaire ; ils n'ont pas encore été vérifiés sur un fichier, et le contrôle de schéma bloquera s'ils diffèrent.
+Le rapport Power BI ne lit pas la base DuckDB : il lit un fichier Parquet par table gold, écrit dans `data/exports/` à la fin de chaque exécution (`pipeline/exporter.py`).
+
+| Fichier | Table gold |
+|---|---|
+| `mart_jour_departement.parquet` | `gold.mart_jour_departement` |
+| `mart_seuil.parquet` | `gold.mart_seuil` |
+| `mart_commune_annee.parquet` | `gold.mart_commune_annee` |
+| `v_q2_quand.parquet` | `gold.v_q2_quand` (vue) |
+
+Dans Power BI Desktop : *Obtenir des données → Parquet*, puis le fichier.
+
+- **L'export n'a lieu qu'après la barrière « modèle »** : si une règle « block » échoue, aucun fichier n'est réécrit et les fichiers de l'exécution précédente restent en place.
+- **Aucun fichier à moitié écrit** : chaque fichier est écrit sous un nom provisoire (`.part`), puis renommé.
+- **Types** : les colonnes `HUGEINT` (sommes d'entiers dans DuckDB) sont exportées en `BIGINT`, que Power BI sait lire. Les autres types sont conservés : dates, booléens, NULL et codes en texte (`13055`).
+- **Lignes triées sur toutes les colonnes** : deux exécutions sur les mêmes données donnent le même contenu.
+- `data/exports/` n'est pas versionné, comme le reste de `data/`.
+
+Les tests (`tests/test_export.py`) vérifient, pour chaque table, que le fichier existe, qu'il a les mêmes colonnes, les mêmes types et exactement les mêmes lignes que la table gold, et que les chiffres des fiches d'indicateurs s'y retrouvent (240 bulletins du 13 sur 2024-2025, 78 jours au niveau 3 ou plus, 489 feux, dont 355 dans la période de publication et 177 un jour de niveau 3 ou plus).
+
+## 7. Limites connues
+
+- **BDIFF manuelle** : sans export déposé, les tables de feux sont vides et les colonnes de feux de gold valent NULL (jamais 0) : `feux_connus` indique si les feux d'un département et d'une année sont chargés. Le chargement a été vérifié sur l'export PACA 2006-2025 du 2026-11-19 (10 789 feux). Cet export mélange deux fins de ligne (LF pour l'en-tête, CRLF pour les données) : la lecture bronze utilise `strict_mode = false`, sans quoi DuckDB refuse le fichier.
 - **Saison 2026 absente de la BDIFF** : la Météo des forêts couvre 2026, mais la BDIFF n'est pas publiée. L'analyse du seuil porte sur 2024 et 2025 seulement (D012).
 - **Seuil actuel et coût d'une journée de renfort inconnus** (D013) : `mart_seuil` donne des jours de renfort, de fausses alertes et de feux manqués, pas des euros.
 - **Périmètre hors Marseille** ([D005](decisions.md), non tranchée) : `mart_seuil` existe pour tout le département et sans Marseille. Sans Marseille, seuls les feux changent : le niveau de la Météo des forêts reste celui de tout le département, qui ne peut pas être séparé.
