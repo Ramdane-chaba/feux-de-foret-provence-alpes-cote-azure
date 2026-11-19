@@ -13,7 +13,10 @@ import duckdb
 from pipeline.chemins import EXPORTS
 
 # Tables et vues de gold lues par Power BI. gold.couverture_bdiff est une table de travail : elle n'est pas exportée.
+# fait_feu_enrichi (un feu par ligne) sert les indicateurs I1 et I2, que les marts agrégés ne permettent pas de calculer.
 TABLES_EXPORTEES = (
+    "fait_feu_enrichi",
+    "ref_communes_prioritaires",
     "mart_jour_departement",
     "mart_seuil",
     "mart_commune_annee",
