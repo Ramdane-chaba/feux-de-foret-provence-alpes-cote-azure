@@ -1,0 +1,194 @@
+/*
+ * Impression (« Télécharger en PDF » de la synthèse) : fond blanc, encre noire, navigation et boutons cachés.
+ * Les couleurs passent par les mêmes jetons que l'écran : il suffit de les redéfinir.
+ */
+
+@page {
+  size: A4 portrait;
+  margin: 13mm 13mm 14mm;
+}
+
+@media print {
+  :root {
+    --fond: #fff;
+    --surface: #fff;
+    --surface-haute: #f1f5f9;
+    --bordure: #cbd5e1;
+    --grille: #e2e8f0;
+    --encre: #0f172a;
+    --encre-2: #1e293b;
+    --encre-3: #475569;
+    --accent: #c2410c;
+    --ombre: none;
+    --nav: 0px;
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff;
+    font-size: 10.5pt;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .sans-impression,
+  .navigation,
+  .barre-presentation,
+  .infobulle,
+  .terme__bouton,
+  .terme__bulle,
+  .braises {
+    display: none !important;
+  }
+
+  .page {
+    min-height: 0;
+    padding: 0;
+    animation: none;
+  }
+
+  .contenu,
+  .contenu--large {
+    width: 100%;
+    padding: 0;
+  }
+
+  .carte-survol,
+  .carte-survol:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .barre,
+  .recit__apparition {
+    animation: none;
+  }
+
+  .kpi,
+  .graphique,
+  .synthese__bloc,
+  .tableau tr {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  .synthese {
+    gap: 14pt;
+  }
+
+  .titre-section--1 h1 {
+    max-width: none;
+    font-size: 21pt;
+  }
+
+  .chapeau {
+    max-width: none;
+    font-size: 11pt;
+  }
+
+  .kpi {
+    padding: 9pt 11pt;
+  }
+
+  .kpi__valeur {
+    font-size: 21pt;
+  }
+
+  .kpi__detail,
+  .note {
+    max-width: none;
+    font-size: 8.5pt;
+  }
+
+  .graphique {
+    padding: 10pt 12pt;
+  }
+
+  .graphique__titre {
+    font-size: 12pt;
+  }
+
+  .synthese__bloc > h2 {
+    font-size: 13pt;
+  }
+
+  .synthese__messages li {
+    font-size: 10.5pt;
+  }
+
+  .synthese__messages li::before {
+    color: #fff;
+  }
+
+  .tableau {
+    font-size: 9.5pt;
+  }
+
+  .tableau th,
+  .tableau td {
+    padding: 5pt 7pt;
+  }
+
+  .tableau__ligne--accent {
+    background: #fff1e6;
+  }
+
+  .axe__base {
+    stroke: #64748b;
+  }
+
+  /* La synthèse garde sa mise en page large sur une feuille A4 : deux pages au lieu de trois. */
+  .grille-kpi--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8pt;
+  }
+
+  .synthese__duo {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 14pt;
+  }
+
+  .synthese__bloc {
+    gap: 7pt;
+  }
+
+  .synthese__messages {
+    gap: 5pt;
+  }
+
+  .synthese__communes li {
+    padding: 2.5pt 0;
+    font-size: 8.5pt;
+  }
+
+  .synthese__limites {
+    gap: 3pt;
+    font-size: 9.5pt;
+  }
+
+  .synthese__pied {
+    break-before: avoid;
+    font-size: 7.5pt;
+  }
+
+  /* Le récit s'imprime étape par étape, le graphique sous son texte. */
+  .recit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .recit__scene {
+    display: none;
+  }
+
+  .recit__etape {
+    min-height: 0;
+    opacity: 1;
+    break-inside: avoid;
+  }
+}
