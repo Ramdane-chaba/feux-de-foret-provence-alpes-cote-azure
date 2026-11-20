@@ -1,0 +1,28 @@
+table Departements
+
+	column code_dep
+		dataType: string
+		summarizeBy: none
+		sourceColumn: code_dep
+
+	column 'Département'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nom_departement
+
+	column est_paca
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: est_paca
+
+	partition Departements = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\ouiss\OneDrive\Documents\feux-de-foret-provence-alpes-cote-azure\data\exports\mart_jour_departement.parquet")),
+				    Colonnes = Table.SelectColumns(Source, {"code_dep", "nom_departement", "est_paca"}),
+				    Distinct = Table.Distinct(Colonnes, {"code_dep"}),
+				    Types = Table.TransformColumnTypes(Distinct, {{"code_dep", type text}, {"nom_departement", type text}, {"est_paca", type logical}})
+				in
+				    Types
+

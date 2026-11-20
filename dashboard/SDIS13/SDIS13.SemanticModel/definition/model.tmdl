@@ -1,0 +1,16 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+ref table fait_feu_enrichi
+ref table mart_seuil
+ref table mart_jour_departement
+ref table Departements
+ref table Calendrier
+
+ref cultureInfo fr-FR
+

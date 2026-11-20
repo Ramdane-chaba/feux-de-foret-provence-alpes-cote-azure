@@ -1,0 +1,20 @@
+relationship feu_calendrier
+	fromColumn: fait_feu_enrichi.jour
+	toColumn: Calendrier.Date
+
+relationship jour_calendrier
+	fromColumn: mart_jour_departement.jour
+	toColumn: Calendrier.Date
+
+relationship feu_departement
+	fromColumn: fait_feu_enrichi.code_dep
+	toColumn: Departements.code_dep
+
+relationship jour_departement
+	fromColumn: mart_jour_departement.code_dep
+	toColumn: Departements.code_dep
+
+relationship seuil_departement
+	fromColumn: mart_seuil.code_dep
+	toColumn: Departements.code_dep
+

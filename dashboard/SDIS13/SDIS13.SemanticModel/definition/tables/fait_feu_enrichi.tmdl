@@ -1,0 +1,153 @@
+table fait_feu_enrichi
+
+	measure 'Nb feux' = COUNTROWS(fait_feu_enrichi)
+		formatString: 0
+
+	measure 'I3 Part feux couverts N3' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[niveau] >= 3), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[dans_periode_bulletin] = TRUE()))
+		formatString: 0.0%
+
+	measure 'I1 Part grands feux prioritaires' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[est_commune_prioritaire] = TRUE(), fait_feu_enrichi[surface_ha] > 1), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[est_commune_prioritaire] = TRUE()))
+		formatString: 0.0%
+
+	measure 'I1 Garde-fou autres communes' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[est_commune_prioritaire] = FALSE(), fait_feu_enrichi[est_marseille] = FALSE(), fait_feu_enrichi[surface_ha] > 1), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[est_commune_prioritaire] = FALSE(), fait_feu_enrichi[est_marseille] = FALSE()))
+		formatString: 0.0%
+
+	measure 'I2 Part alertes plages patrouille' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[niveau] >= 3, fait_feu_enrichi[heure] >= 12, fait_feu_enrichi[heure] < 20), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[niveau] >= 3))
+		formatString: 0.0%
+
+	measure 'Nb feux communes prioritaires 2006-2025' = CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[est_commune_prioritaire] = TRUE())
+		formatString: 0
+
+	measure 'Feux 13 2024-2025' = CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025})
+		formatString: 0
+
+	measure 'Part feux hors periode indice' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[dans_periode_bulletin] = FALSE()), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}))
+		formatString: 0.0%
+
+	measure 'Feux 13 2006-2025' = CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13")
+		formatString: 0
+
+	measure 'Feux 13 hors Marseille' = CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[est_marseille] = FALSE())
+		formatString: 0
+
+	measure 'Surface 13 hors Marseille (ha)' = CALCULATE(SUM(fait_feu_enrichi[surface_ha]), fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[est_marseille] = FALSE())
+		formatString: #,0
+
+	measure 'I3 couverts N3 par departement' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[niveau] >= 3), CALCULATE([Nb feux], fait_feu_enrichi[annee] IN {2024, 2025}, fait_feu_enrichi[dans_periode_bulletin] = TRUE()))
+		formatString: 0.0%
+
+	measure 'Feux par an 2006-2025' = DIVIDE([Nb feux], 20)
+		formatString: 0
+
+	measure 'Surface brulee (ha)' = SUM(fait_feu_enrichi[surface_ha])
+		formatString: #,0
+
+	measure 'Feux 13 2025' = CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] = 2025)
+		formatString: 0
+
+	measure 'Feux 13 moyenne 2015-2024' = DIVIDE(CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] >= 2015, fait_feu_enrichi[annee] <= 2024), 10)
+		formatString: 0
+
+	measure 'Ecart feux 2025 vs moyenne' = DIVIDE([Feux 13 2025] - [Feux 13 moyenne 2015-2024], [Feux 13 moyenne 2015-2024])
+		formatString: +0.0%;-0.0%;0.0%
+
+	measure 'Surface 13 2025 (ha)' = CALCULATE(SUM(fait_feu_enrichi[surface_ha]), fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] = 2025)
+		formatString: #,0
+
+	measure 'Surface 13 moyenne 2015-2024 (ha)' = DIVIDE(CALCULATE(SUM(fait_feu_enrichi[surface_ha]), fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] >= 2015, fait_feu_enrichi[annee] <= 2024), 10)
+		formatString: #,0
+
+	measure 'Ecart surface 2025 vs moyenne' = DIVIDE([Surface 13 2025 (ha)] - [Surface 13 moyenne 2015-2024 (ha)], [Surface 13 moyenne 2015-2024 (ha)])
+		formatString: +0.0%;-0.0%;0.0%
+
+	measure 'Surface moyenne par feu 2024-2025 (ha)' = DIVIDE(CALCULATE(SUM(fait_feu_enrichi[surface_ha]), fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}), CALCULATE([Nb feux], fait_feu_enrichi[code_dep] = "13", fait_feu_enrichi[annee] IN {2024, 2025}))
+		formatString: 0.0
+
+	measure 'Part feux dans les 18 communes' = DIVIDE([Nb feux communes prioritaires 2006-2025], [Feux 13 hors Marseille])
+		formatString: 0.0%
+
+	column annee
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: annee
+
+	column numero
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numero
+
+	column code_dep
+		dataType: string
+		summarizeBy: none
+		sourceColumn: code_dep
+
+	column code_insee
+		dataType: string
+		summarizeBy: none
+		sourceColumn: code_insee
+
+	column nom_commune
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nom_commune
+
+	column alerte
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: alerte
+
+	column jour
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: jour
+
+	column mois
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: mois
+
+	column jour_semaine
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jour_semaine
+
+	column heure
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: heure
+
+	column niveau
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: niveau
+
+	column dans_periode_bulletin
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: dans_periode_bulletin
+
+	column surface_ha
+		dataType: double
+		summarizeBy: none
+		sourceColumn: surface_ha
+
+	column est_marseille
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: est_marseille
+
+	column est_commune_prioritaire
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: est_commune_prioritaire
+
+	partition fait_feu_enrichi = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\ouiss\OneDrive\Documents\feux-de-foret-provence-alpes-cote-azure\data\exports\fait_feu_enrichi.parquet")),
+				    Colonnes = Table.SelectColumns(Source, {"annee", "numero", "code_dep", "code_insee", "nom_commune", "alerte", "jour", "mois", "jour_semaine", "heure", "niveau", "dans_periode_bulletin", "surface_ha", "est_marseille", "est_commune_prioritaire"}),
+				    Types = Table.TransformColumnTypes(Colonnes, {{"annee", Int64.Type}, {"numero", type text}, {"code_dep", type text}, {"code_insee", type text}, {"nom_commune", type text}, {"alerte", type datetime}, {"jour", type date}, {"mois", Int64.Type}, {"jour_semaine", Int64.Type}, {"heure", Int64.Type}, {"niveau", Int64.Type}, {"dans_periode_bulletin", type logical}, {"surface_ha", type number}, {"est_marseille", type logical}, {"est_commune_prioritaire", type logical}})
+				in
+				    Types
+
