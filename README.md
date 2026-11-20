@@ -9,6 +9,23 @@ Réponse à la commande de la direction du **SDIS 13 (Bouches-du-Rhône)** : sai
 - **Comparaison attendue** : le département, les autres départements de la région PACA et le reste du territoire national.
 - **Échéance** : 11 décembre 2026.
 
+## Voir les résultats
+
+- **Application publiée** : [sdis13-feux-2027.netlify.app](https://sdis13-feux-2027.netlify.app/). Elle contient un récit en cinq étapes, un simulateur de seuil et de budget, une carte des communes, un calendrier des saisons et une synthèse imprimable. Rien à installer : les données sont déjà chargées.
+- **Recommandation au SDIS 13** : [`docs/recommandation.md`](docs/recommandation.md). Elle donne le seuil de déclenchement, le budget en jours de renfort, les communes et les heures à renforcer, la comparaison avec PACA et la France, et les limites.
+- **Indicateurs** : [`kpi/02_fiches_indicateurs.md`](kpi/02_fiches_indicateurs.md) pour I1, I2 et I3, à partir des objectifs SMART de [`kpi/01_objectifs.md`](kpi/01_objectifs.md).
+
+## Reconstruire les données
+
+Prérequis : [`uv`](https://docs.astral.sh/uv/), et l'export BDIFF téléchargé à la main sur [bdiff.agriculture.gouv.fr](https://bdiff.agriculture.gouv.fr/incendies) puis déposé dans `data/raw/bdiff/`. Le détail est dans [`docs/pipeline.md`](docs/pipeline.md).
+
+```
+uv run python -m pipeline.construire   # télécharge les autres sources, construit la base et les exports
+uv run pytest                          # lance les tests
+```
+
+Pour lancer l'application en local (Node 20 ou plus), voir [`dashboard/web/README.md`](dashboard/web/README.md).
+
 ## Rôles
 
 | Membre | Rôle | Responsable de |
@@ -25,10 +42,22 @@ Tout changement de rôle est consigné et expliqué dans [`docs/decisions.md`](d
 
 | Dossier / fichier | Contenu |
 |---|---|
+| `docs/recommandation.md` | Recommandation au SDIS 13 pour la saison 2027 |
 | `docs/analyse/` | Analyses individuelles de la commande (`commande-prenom-nom.md`) |
 | `docs/sources/` | Fiches d'identité des sources, inventaire, matrice questions × sources |
+| `docs/modele-donnees.md` | Modèle de données (schéma en étoile) et choix de la stack |
+| `docs/pipeline.md` | Lancement du pipeline, couches bronze, silver et gold, lineage, export, limites |
+| `docs/qualite/` | Rapport de qualité généré par le pipeline |
 | `docs/glossaire.md` | Glossaire du projet |
 | `docs/decisions.md` | Journal des décisions |
+| `kpi/` | Diagnostic stratégique, objectifs SMART de chaque membre, fiches d'indicateurs |
+| `pipeline/` | Code Python du pipeline : téléchargement, chargement, contrôles de qualité, exports |
+| `sql/` | Transformations SQL des couches bronze, silver et gold |
+| `tests/` | Tests `pytest` du pipeline, des exports et des indicateurs |
+| `dashboard/web/` | Application web (React), publiée sur [sdis13-feux-2027.netlify.app](https://sdis13-feux-2027.netlify.app/) |
+| `dashboard/SDIS13/` | Tableau de bord Power BI (projet `.pbip`) |
+| `powerbi/` | Rapport Power BI sur les exports Parquet (projet `.pbip`) |
+| `data/` | Données téléchargées et reconstruites (non versionnées) |
 
 ## Conventions de travail
 
