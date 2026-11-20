@@ -118,3 +118,28 @@ def test_commune_annee_rang(gold):
 def test_vue_q2(gold):
     heures = gold.execute("SELECT heure, sum(nb_feux) FROM gold.v_q2_quand GROUP BY 1 ORDER BY 1").fetchall()
     assert heures == [(13, 1), (14, 1), (15, 1), (16, 1)]
+
+
+def test_fait_feu_enrichi(gold):
+    # Un feu par ligne, avec le niveau de son jour (D016) et l'heure d'alerte ; Aix (13001) est prioritaire.
+    lignes = gold.execute(
+        "SELECT numero, jour, heure, niveau, dans_periode_bulletin, surface_ha, est_marseille, est_commune_prioritaire "
+        "FROM gold.fait_feu_enrichi ORDER BY numero"
+    ).fetchall()
+    assert [l[0] for l in lignes] == ["a", "b", "c", "d"]
+    assert [(l[2], l[3], l[4]) for l in lignes] == [(14, 1, True), (15, 3, True), (13, 4, True), (16, 4, True)]
+    assert [(l[6], l[7]) for l in lignes] == [(False, True), (True, False), (False, True), (False, True)]
+
+
+def test_fait_feu_enrichi_niveau_null_hors_periode(gold):
+    # Un feu un jour sans bulletin garde un niveau NULL, jamais 1.
+    gold.execute(
+        "INSERT INTO silver.fait_feu VALUES "
+        "(2024, 'e', '13', '13001', TIMESTAMP '2024-06-30 10:00:00', DATE '2024-06-30', 0.1, FALSE)"
+    )
+    gold.execute((SQL / "gold" / "50_fait_feu_enrichi.sql").read_text(encoding="utf-8"))
+    assert gold.execute(
+        "SELECT niveau, dans_periode_bulletin FROM gold.fait_feu_enrichi WHERE numero = 'e'"
+    ).fetchone() == (None, False)
+    gold.execute("DELETE FROM silver.fait_feu WHERE numero = 'e'")
+    gold.execute((SQL / "gold" / "50_fait_feu_enrichi.sql").read_text(encoding="utf-8"))

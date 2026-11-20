@@ -1,6 +1,7 @@
 # Aucune donnée sur GitHub : fichiers téléchargés, extraits ou reconstruits par le pipeline
 data/raw/
 data/tmp/
+data/exports/
 data/*.duckdb
 data/*.duckdb.wal
 
