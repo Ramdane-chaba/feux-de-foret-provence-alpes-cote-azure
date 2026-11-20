@@ -1,0 +1,298 @@
+/// Mesures des indicateurs I1, I2, I3 et de leurs garde-fous.
+table Indicateurs
+	lineageTag: 733e7058-9ae5-54b7-bfed-507731706e7b
+
+	/// Seuil de déclenchement N : valeur du segment, 3 par défaut (exemple des fiches).
+	measure 'N retenu' = SELECTEDVALUE ( 'Seuil N'[N], 3 )
+		formatString: 0
+		displayFolder: Paramètres
+		lineageTag: 0e1b1276-500a-57f1-9e58-d960eb865cca
+
+	/// Heure de début des patrouilles : valeur du segment, 12 h par défaut (exemple de la fiche I2).
+	measure 'Début plage' = SELECTEDVALUE ( 'Début patrouille'[Heure de début], 12 )
+		formatString: 0
+		displayFolder: Paramètres
+		lineageTag: 51248fb0-5c58-5b56-970c-abd320df2804
+
+	/// Heure de fin des patrouilles (exclue) : valeur du segment, 20 h par défaut.
+	measure 'Fin plage' = SELECTEDVALUE ( 'Fin patrouille'[Heure de fin], 20 )
+		formatString: 0
+		displayFolder: Paramètres
+		lineageTag: ddf9a288-3b57-5e91-a2cf-2b0dee4e6c01
+
+	/// Seuil de surface S en hectares : valeur du segment, 1 ha par défaut (objectif O1).
+	measure 'S retenu (ha)' = SELECTEDVALUE ( 'Seuil surface'[Hectares], 1 )
+		formatString: 0.0
+		displayFolder: Paramètres
+		lineageTag: 65e99ce5-aa80-5633-b829-0bcf1c9164e3
+
+	/// Seuil S écrit sans décimale inutile (1 ha, 0,5 ha).
+	measure 'S affiché' = VAR s = [S retenu (ha)] RETURN IF ( s = INT ( s ), FORMAT ( s, "0" ), FORMAT ( s, "0.0" ) )
+		displayFolder: Paramètres
+		lineageTag: 1406b2f9-6b38-5deb-b606-25289f673939
+
+	/// Rappel des paramètres utilisés par les indicateurs.
+	measure 'Paramètres affichés' = "Seuil N ≥ " & [N retenu] & "  ·  patrouilles " & [Début plage] & " h – " & [Fin plage] & " h  ·  grands feux > " & [S affiché] & " ha"
+		displayFolder: Paramètres
+		lineageTag: 52643b0c-1ae2-568e-898a-30ac2997c116
+
+	/// Nombre de départs de feu de la BDIFF.
+	measure 'Nombre de feux' = COUNTROWS ( Feux )
+		formatString: #,0
+		displayFolder: Volumes
+		lineageTag: 66b4e0b4-449f-53fb-b06a-cffdee43802f
+
+	/// Feux partis un jour couvert par un bulletin de la Météo des forêts.
+	measure 'Feux dans la période' = CALCULATE ( [Nombre de feux], KEEPFILTERS ( Feux[dans_periode_bulletin] = TRUE () ) )
+		formatString: #,0
+		displayFolder: Volumes
+		lineageTag: ab88c5db-d477-5532-b68d-3855ad0182c2
+
+	/// Feux partis hors de la période de publication de l'indice : aucun niveau de danger.
+	measure 'Feux hors période' = CALCULATE ( [Nombre de feux], KEEPFILTERS ( Feux[dans_periode_bulletin] = FALSE () ) )
+		formatString: #,0
+		displayFolder: Volumes
+		lineageTag: c9acb75b-c142-5350-a49a-d33c35885ac6
+
+	measure 'Part des feux hors période' = DIVIDE ( [Feux hors période], [Nombre de feux] )
+		formatString: 0.0 %
+		displayFolder: Volumes
+		lineageTag: 027ddc12-20b9-5e63-b266-91674ebc9932
+
+	measure 'Surface brûlée (ha)' = SUM ( Feux[surface_ha] )
+		formatString: #,0
+		displayFolder: Volumes
+		lineageTag: 9b76f269-7a22-577f-8e93-2b8197e73fb9
+
+	/// Tous les feux de l'export BDIFF, quelle que soit l'année sélectionnée.
+	measure 'Feux 2006-2025' = CALCULATE ( [Nombre de feux], REMOVEFILTERS ( 'Année' ) )
+		formatString: #,0
+		displayFolder: Volumes
+		lineageTag: 9655c1da-0516-56d0-8ea9-ee5582eab85b
+
+	/// Feux partis un jour dont le niveau prévu la veille est supérieur ou égal à N (D016).
+	measure 'Feux couverts par le seuil' =
+			VAR n = [N retenu]
+			RETURN
+			    CALCULATE ( [Nombre de feux], KEEPFILTERS ( Feux[niveau] >= n ) )
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: 8e159646-b952-53b6-88f6-919fee2b391c
+
+	/// Feux de la période de publication partis un jour de niveau inférieur à N.
+	measure 'Feux manqués par le seuil' = [Feux dans la période] - [Feux couverts par le seuil]
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: 1e4f9d5e-3916-5423-bc06-c958ab07d8b0
+
+	/// I3 : feux de niveau ≥ N ÷ feux de la période de publication (fiche I3).
+	measure 'I3 Couverture du seuil' = DIVIDE ( [Feux couverts par le seuil], [Feux dans la période] )
+		formatString: 0.0 %
+		displayFolder: I3 Seuil
+		lineageTag: 25c5d548-3a42-5b7c-b817-5ed6b2497b39
+
+	/// Variante : feux de niveau ≥ N ÷ tous les feux, y compris hors période de publication.
+	measure 'Couverture de tous les feux' = DIVIDE ( [Feux couverts par le seuil], [Nombre de feux] )
+		formatString: 0.0 %
+		displayFolder: I3 Seuil
+		lineageTag: 0a6c67c0-e39c-5d4a-a32e-bba35580f942
+
+	measure 'Jours avec bulletin' = CALCULATE ( COUNTROWS ( Jours ), KEEPFILTERS ( NOT ISBLANK ( Jours[niveau] ) ) )
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: ee833d5b-0336-52dd-a5f0-c0db2774091c
+
+	/// Jours où le niveau prévu atteint N : coût du seuil en jours de dispositif renforcé.
+	measure 'Jours de renfort' =
+			VAR n = [N retenu]
+			RETURN
+			    CALCULATE ( COUNTROWS ( Jours ), KEEPFILTERS ( Jours[niveau] >= n ) )
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: 71659345-ad55-5fd1-89a0-ce17edad80dd
+
+	measure 'Part des jours de renfort' = DIVIDE ( [Jours de renfort], [Jours avec bulletin] )
+		formatString: 0.0 %
+		displayFolder: I3 Seuil
+		lineageTag: 98816463-2be4-5e72-9b2e-882d9e012922
+
+	/// Garde-fou : jours de renfort sans aucun feu enregistré (feux connus seulement).
+	measure 'Jours de renfort sans feu' =
+			VAR n = [N retenu]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Jours ),
+			        KEEPFILTERS ( Jours[niveau] >= n ),
+			        KEEPFILTERS ( Jours[feux_connus] = TRUE () ),
+			        KEEPFILTERS ( Jours[nb_feux] = 0 )
+			    )
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: 8c11186a-465a-5249-8fea-9c9aeefaa1cb
+
+	measure 'Part des jours de renfort sans feu' = DIVIDE ( [Jours de renfort sans feu], [Jours de renfort] )
+		formatString: 0.0 %
+		displayFolder: I3 Seuil
+		lineageTag: 90cc9b34-9f64-5b62-86b8-fcee138eac14
+
+	measure 'Surface brûlée hors renfort (ha)' =
+			VAR n = [N retenu]
+			RETURN
+			    CALCULATE (
+			        [Surface brûlée (ha)],
+			        KEEPFILTERS ( Feux[dans_periode_bulletin] = TRUE () ),
+			        KEEPFILTERS ( Feux[niveau] < n )
+			    )
+		formatString: #,0
+		displayFolder: I3 Seuil
+		lineageTag: b78b786e-2ca4-5c1b-be34-8e4d8bad0af0
+
+	/// Feux d'un jour de niveau ≥ N dont l'heure de première alerte tombe dans la plage [début ; fin[
+	measure 'Feux dans les plages' =
+			VAR n = [N retenu]
+			VAR d = [Début plage]
+			VAR f = [Fin plage]
+			RETURN
+			    CALCULATE (
+			        [Nombre de feux],
+			        KEEPFILTERS ( Feux[niveau] >= n ),
+			        KEEPFILTERS ( Feux[heure] >= d ),
+			        KEEPFILTERS ( Feux[heure] < f )
+			    )
+		formatString: #,0
+		displayFolder: I2 Plages horaires
+		lineageTag: 20a7aefb-1356-504f-835f-f62b4bb6ce8b
+
+	measure 'Feux hors des plages' = [Feux couverts par le seuil] - [Feux dans les plages]
+		formatString: #,0
+		displayFolder: I2 Plages horaires
+		lineageTag: 275a6a6f-4901-582a-98c0-35d90f900617
+
+	/// I2 : feux des jours déclenchés alertés dans les plages ÷ feux des jours déclenchés (fiche I2).
+	measure 'I2 Alertes dans les plages' = DIVIDE ( [Feux dans les plages], [Feux couverts par le seuil] )
+		formatString: 0.0 %
+		displayFolder: I2 Plages horaires
+		lineageTag: 91909454-e6d9-5c0e-aa9b-93a9935d85da
+
+	measure 'Heures de patrouille par jour' = MAX ( 0, [Fin plage] - [Début plage] )
+		formatString: 0
+		displayFolder: I2 Plages horaires
+		lineageTag: 4ff50d9b-67c9-5fbd-b357-204878144293
+
+	/// Garde-fou : surface des feux des jours déclenchés alertés hors des plages.
+	measure 'Surface brûlée hors des plages (ha)' =
+			VAR n = [N retenu]
+			VAR d = [Début plage]
+			VAR f = [Fin plage]
+			RETURN
+			    CALCULATE (
+			        [Surface brûlée (ha)],
+			        KEEPFILTERS ( Feux[niveau] >= n ),
+			        KEEPFILTERS ( Feux[heure] < d || Feux[heure] >= f )
+			    )
+		formatString: #,0
+		displayFolder: I2 Plages horaires
+		lineageTag: 08703db6-c335-5e3e-aa8f-fc3dc8c66299
+
+	/// Feux des 18 communes prioritaires, hors Marseille.
+	measure 'Feux communes prioritaires' =
+			CALCULATE (
+			    [Nombre de feux],
+			    KEEPFILTERS ( Feux[est_commune_prioritaire] = TRUE () ),
+			    KEEPFILTERS ( Feux[est_marseille] = FALSE () )
+			)
+		formatString: #,0
+		displayFolder: I1 Communes
+		lineageTag: ef079d1d-e4b5-5f1a-978f-fcf5e7df6105
+
+	measure 'Grands feux communes prioritaires' =
+			VAR s = [S retenu (ha)]
+			RETURN
+			    CALCULATE ( [Feux communes prioritaires], KEEPFILTERS ( Feux[surface_ha] > s ) )
+		formatString: #,0
+		displayFolder: I1 Communes
+		lineageTag: 480eeceb-05ca-56a8-91e9-31878e3593da
+
+	/// I1 : feux de plus de S ha ÷ feux, dans les 18 communes prioritaires hors Marseille (fiche I1).
+	measure 'I1 Grands feux prioritaires' = DIVIDE ( [Grands feux communes prioritaires], [Feux communes prioritaires] )
+		formatString: 0.0 %
+		displayFolder: I1 Communes
+		lineageTag: 9f4b5485-b588-53af-8a7b-266d1e8567c0
+
+	measure 'Feux autres communes' =
+			CALCULATE (
+			    [Nombre de feux],
+			    KEEPFILTERS ( Feux[est_commune_prioritaire] = FALSE () ),
+			    KEEPFILTERS ( Feux[est_marseille] = FALSE () )
+			)
+		formatString: #,0
+		displayFolder: I1 Communes
+		lineageTag: b3b3643f-2a28-5d6e-a241-06ae6f0077d1
+
+	measure 'Grands feux autres communes' =
+			VAR s = [S retenu (ha)]
+			RETURN
+			    CALCULATE ( [Feux autres communes], KEEPFILTERS ( Feux[surface_ha] > s ) )
+		formatString: #,0
+		displayFolder: I1 Communes
+		lineageTag: 53b023f2-5710-5072-bfbf-83a9cda65255
+
+	/// Condition de l'objectif O1 : la part ne doit pas augmenter dans les autres communes.
+	measure 'I1 Garde-fou autres communes' = DIVIDE ( [Grands feux autres communes], [Feux autres communes] )
+		formatString: 0.0 %
+		displayFolder: I1 Communes
+		lineageTag: 524521e6-0b46-5941-8fdc-4d9837851e8a
+
+	/// Part des feux 2006-2025 (hors Marseille) partis dans les 18 communes prioritaires.
+	measure 'Concentration 2006-2025' =
+			DIVIDE (
+			    CALCULATE ( [Feux communes prioritaires], REMOVEFILTERS ( 'Année' ) ),
+			    CALCULATE ( [Nombre de feux], REMOVEFILTERS ( 'Année' ), KEEPFILTERS ( Feux[est_marseille] = FALSE () ) )
+			)
+		formatString: 0.0 %
+		displayFolder: I1 Communes
+		lineageTag: 5fe3c5fb-9188-55ac-ac5e-1823f2d1874d
+
+	measure 'Texte I1' = IF ( ISBLANK ( [Nombre de feux] ), "Feux non chargés (export BDIFF absent)", FORMAT ( COALESCE ( [Grands feux communes prioritaires], 0 ), "#,0" ) & " feux de plus de " & [S affiché] & " ha sur " & FORMAT ( COALESCE ( [Feux communes prioritaires], 0 ), "#,0" ) )
+		displayFolder: Textes
+		lineageTag: f3ce4886-b52b-5fa7-b9be-d0fbfcbe2fc9
+
+	measure 'Texte I1 garde-fou' = IF ( ISBLANK ( [Nombre de feux] ), "Feux non chargés (export BDIFF absent)", "Autres communes : " & FORMAT ( COALESCE ( [Grands feux autres communes], 0 ), "#,0" ) & " sur " & FORMAT ( COALESCE ( [Feux autres communes], 0 ), "#,0" ) )
+		displayFolder: Textes
+		lineageTag: 6e1966ae-ddbb-56a5-b968-4426401c2e48
+
+	measure 'Texte I2' = IF ( ISBLANK ( [Nombre de feux] ), "Feux non chargés (export BDIFF absent)", FORMAT ( COALESCE ( [Feux dans les plages], 0 ), "#,0" ) & " alertes sur " & FORMAT ( COALESCE ( [Feux couverts par le seuil], 0 ), "#,0" ) & " feux  ·  " & [Début plage] & " h – " & [Fin plage] & " h, N ≥ " & [N retenu] )
+		displayFolder: Textes
+		lineageTag: 15ac6110-a0a4-567d-a98b-a3e8e44c74f7
+
+	measure 'Texte I3' = IF ( ISBLANK ( [Nombre de feux] ), "Feux non chargés (export BDIFF absent)", FORMAT ( COALESCE ( [Feux couverts par le seuil], 0 ), "#,0" ) & " feux sur " & FORMAT ( COALESCE ( [Feux dans la période], 0 ), "#,0" ) & "  ·  N ≥ " & [N retenu] )
+		displayFolder: Textes
+		lineageTag: 38e8a969-57b7-53cc-8a80-c0d3862963da
+
+	measure 'Texte hors période' = IF ( ISBLANK ( [Nombre de feux] ), "Feux non chargés", FORMAT ( COALESCE ( [Part des feux hors période], 0 ), "0.0 %" ) & " des feux, sans niveau de danger" )
+		displayFolder: Textes
+		lineageTag: 57e292d7-ec38-5df5-a593-f62b361fc005
+
+	measure 'Texte jours de renfort' = "sur " & FORMAT ( COALESCE ( [Jours avec bulletin], 0 ), "#,0" ) & " jours avec bulletin"
+		displayFolder: Textes
+		lineageTag: 5b48dfef-bef8-5fc1-b36d-da14a864e092
+
+	measure 'Texte jours sans feu' = IF ( ISBLANK ( [Jours de renfort sans feu] ), "Feux non chargés", FORMAT ( COALESCE ( [Part des jours de renfort sans feu], 0 ), "0.0 %" ) & " des jours de renfort" )
+		displayFolder: Textes
+		lineageTag: 9b515398-3268-5bb5-9c3f-6446843dae1e
+
+	column Ordre
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5622188e-464b-5e20-ab44-8b1001e6998d
+		summarizeBy: none
+		sourceColumn: [Ordre]
+
+		annotation SummarizationSetBy = User
+
+	partition Indicateurs = calculated
+		mode: import
+		source = ROW ( "Ordre", 1 )
+
+	annotation PBI_ResultType = Table

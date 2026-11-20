@@ -1,0 +1,18 @@
+/// Valeurs possibles du seuil de déclenchement N.
+table 'Seuil N'
+	lineageTag: 3073e751-64c8-51bd-b66b-be0fd6daf6dd
+
+	column N
+		dataType: int64
+		formatString: 0
+		lineageTag: bab38477-0b22-5d22-b758-408fc25c03a5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Seuil N' = calculated
+		mode: import
+		source = GENERATESERIES ( 2, 4, 1 )
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,18 @@
+/// Heure de début des patrouilles.
+table 'Début patrouille'
+	lineageTag: 1882bfcb-dbdf-5c58-a46f-aa417e4cc58f
+
+	column 'Heure de début'
+		dataType: int64
+		formatString: 0
+		lineageTag: 685d5cb1-2084-5238-8e13-f6c2ec714243
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Début patrouille' = calculated
+		mode: import
+		source = GENERATESERIES ( 0, 23, 1 )
+
+	annotation PBI_ResultType = Table
