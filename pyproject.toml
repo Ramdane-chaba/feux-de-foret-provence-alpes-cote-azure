@@ -1,0 +1,17 @@
+[project]
+name = "feux-de-foret-paca"
+version = "0.1.0"
+description = "Pipeline de données du projet SDIS 13 : feux de forêt et Météo des forêts"
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
