@@ -1,8 +1,20 @@
 # Glossaire — Provence-Alpes-Côte d'Azur
 
-Dernière mise à jour : 2026-11-17 (confrontation des questions aux sources : colonnes réelles, divergences et nouveaux termes)
+Dernière mise à jour : 2026-11-20 (ajout de BMPM, grand feu, jour de renfort et niveau J+1 pour l'application web)
 
 Version 0, construite à partir des trois analyses individuelles de la commande (Ghiles Mekdam, Ramdane Chaba, Ouissem Aouimeur). Les doublons ont été fusionnés ; la ligne « Ajouté par » indique qui a proposé chaque terme. Tant qu'une définition n'est pas confirmée par la documentation d'un producteur ou par une décision du groupe, son statut reste « à vérifier ».
+
+## BMPM (Bataillon de marins-pompiers de Marseille)
+
+- **Définition :** unité de la Marine nationale qui assure les secours et la lutte contre l'incendie à Marseille. La commune de Marseille n'est donc pas défendue par le SDIS 13, alors qu'elle fait partie du département.
+- **Sources et colonnes :** interventions SDIS, ligne `BMPM` de la colonne `Numéro` ; BDIFF, `Code INSEE` 13055 (colonne `est_marseille` du pipeline).
+- **Divergences :** la Météo des forêts ne donne qu'un niveau pour tout le département, Marseille comprise : on peut retirer les feux de Marseille, pas son niveau de danger.
+- **Règle retenue :** à décider ([journal des décisions, D005](decisions.md)). En attendant, les indicateurs sont calculés pour le département entier et hors Marseille.
+- **Unité ou granularité :** un service d'incendie et de secours ; une commune (13055).
+- **Exemple :** Marseille compte 217 feux dans la BDIFF de 2006 à 2025 ; interventions 2024, `Feux de végétations` : 431 pour la ligne `BMPM`.
+- **Statut :** proposé.
+- **Origine de la définition :** fiche interventions SDIS, fiche BDIFF, D005.
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-20 (entrée séparée de « Département » pour l'application web).
 
 ## Commune (code INSEE)
 
@@ -124,6 +136,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Origine de la définition :** fiche interventions SDIS.
 - **Ajouté par :** Ramdane Chaba, 2026-11-17.
 
+## Grand feu
+
+- **Définition :** dans l'indicateur I1, un départ de feu dont la surface parcourue dépasse 1 hectare. Il sert de proxy pour un feu repéré trop tard, qu'aucun champ ne permet d'identifier directement.
+- **Sources et colonnes :** BDIFF, `Surface parcourue (m2)` supérieure à 10 000 m² (colonne `surface_ha` du pipeline).
+- **Divergences :** le seuil de surface change le sens du chiffre : à 0,5 ha on suit surtout la rapidité d'intervention, à 5 ha il ne reste que 5 feux sur deux saisons.
+- **Règle retenue :** 1 ha (fiche de l'indicateur I1).
+- **Unité ou granularité :** un feu.
+- **Exemple :** 16 grands feux sur 242 départs dans les 18 communes prioritaires en 2024-2025 (6,6 %).
+- **Statut :** proposé.
+- **Origine de la définition :** fiche de l'indicateur I1 (`kpi/02_fiches_indicateurs.md`).
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-20.
+
 ## Indice forêt météo (IFM)
 
 - **Définition :** indice calculé à partir des conditions météorologiques (température, humidité, vent, pluie) qui estime la facilité avec laquelle un feu peut démarrer et se propager. C'est la base de calcul de la Météo des forêts.
@@ -135,6 +159,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Statut :** à vérifier.
 - **Origine de la définition :** Météo-France.
 - **Ajouté par :** Ouissem Aouimeur, 2026-11-16.
+
+## Jour de renfort
+
+- **Définition :** un jour où le dispositif renforcé est déclenché, parce que le niveau de la Météo des forêts prévu la veille atteint le seuil de déclenchement. C'est l'unité dans laquelle on exprime le coût d'un seuil, faute de connaître le coût en euros d'une journée.
+- **Sources et colonnes :** calculé à partir de `niveau_j1` (Météo des forêts) ; colonne `jours_declenches` de `gold.mart_seuil`.
+- **Divergences :** on mesure les jours où une règle aurait déclenché le renfort, pas les jours où le SDIS a réellement renforcé (aucune source ne les enregistre).
+- **Règle retenue :** un jour compte si `niveau_j1` de la veille est supérieur ou égal au seuil ([journal des décisions, D013 et D016](decisions.md)).
+- **Unité ou granularité :** un jour, pour un département, une saison et un seuil.
+- **Exemple :** Bouches-du-Rhône, seuil au niveau 3 : 19 jours de renfort en 2024 et 59 en 2025, soit 78 sur les 240 jours des deux saisons.
+- **Statut :** proposé.
+- **Origine de la définition :** décision D013 ; fiche de l'indicateur I3.
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-20.
 
 ## Massif
 
@@ -183,6 +219,18 @@ Version 0, construite à partir des trois analyses individuelles de la commande 
 - **Statut :** proposé.
 - **Origine de la définition :** export CSV de la BDIFF (fiche BDIFF).
 - **Ajouté par :** Ouissem Aouimeur, 2026-11-17.
+
+## Niveau J+1
+
+- **Définition :** le niveau de danger que le bulletin de la Météo des forêts prévoit pour le lendemain de sa diffusion. C'est le niveau connu la veille au soir, celui sur lequel le SDIS peut décider de renforcer.
+- **Sources et colonnes :** Météo des forêts, colonne `niveau_j1` (1 = faible, 2 = modéré, 3 = élevé, 4 = très élevé).
+- **Divergences :** la date du fichier est celle de la diffusion, pas celle du jour du danger ; `niveau_j2` donne le surlendemain et n'est pas utilisé.
+- **Règle retenue :** jour du danger = `date` + 1 ([journal des décisions, D016](decisions.md)) : un feu alerté le jour J est rattaché au `niveau_j1` du bulletin diffusé le jour J-1.
+- **Unité ou granularité :** un niveau, pour un jour et un département.
+- **Exemple :** le bulletin du 3 juin 2025 donne le niveau J+1 du 4 juin 2025.
+- **Statut :** proposé.
+- **Origine de la définition :** documentation Open Data de Météo-France ; D016.
+- **Ajouté par :** Ouissem Aouimeur, 2026-11-20.
 
 ## Patrouille et guet
 

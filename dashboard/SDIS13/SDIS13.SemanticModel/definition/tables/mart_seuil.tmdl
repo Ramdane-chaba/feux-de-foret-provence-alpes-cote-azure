@@ -1,0 +1,100 @@
+table mart_seuil
+
+	measure 'Jours de renfort' = CALCULATE(SUM(mart_seuil[jours_declenches]), mart_seuil[code_dep] = "13", mart_seuil[perimetre] = "departement")
+		formatString: 0
+
+	measure 'Feux manqués' = CALCULATE(SUM(mart_seuil[feux_manques]), mart_seuil[code_dep] = "13", mart_seuil[perimetre] = "departement")
+		formatString: 0
+
+	measure 'Jours de renfort N3' = CALCULATE([Jours de renfort], mart_seuil[seuil] = 3)
+		formatString: 0
+
+	measure 'Fausses alertes' = CALCULATE(SUM(mart_seuil[fausses_alertes]), mart_seuil[code_dep] = "13", mart_seuil[perimetre] = "departement")
+		formatString: 0
+
+	measure 'Jours de renfort N3 par departement' = CALCULATE(SUM(mart_seuil[jours_declenches]), mart_seuil[seuil] = 3, mart_seuil[perimetre] = "departement", mart_seuil[est_paca] = TRUE())
+		formatString: 0
+
+	measure 'Part fausses alertes N3' = DIVIDE(CALCULATE(SUM(mart_seuil[fausses_alertes]), mart_seuil[code_dep] = "13", mart_seuil[perimetre] = "departement", mart_seuil[seuil] = 3), [Jours de renfort N3])
+		formatString: 0.0%
+
+	column code_dep
+		dataType: string
+		summarizeBy: none
+		sourceColumn: code_dep
+
+	column nom_departement
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nom_departement
+
+	column est_paca
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: est_paca
+
+	column annee
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: annee
+
+	column seuil
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: seuil
+
+	column perimetre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: perimetre
+
+	column feux_connus
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: feux_connus
+
+	column jours_bulletin
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jours_bulletin
+
+	column jours_declenches
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jours_declenches
+
+	column jours_declenches_avec_feu
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jours_declenches_avec_feu
+
+	column fausses_alertes
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: fausses_alertes
+
+	column feux_manques
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: feux_manques
+
+	column jours_avec_feu_manques
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jours_avec_feu_manques
+
+	column surface_manquee_ha
+		dataType: double
+		summarizeBy: none
+		sourceColumn: surface_manquee_ha
+
+	partition mart_seuil = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\ouiss\OneDrive\Documents\feux-de-foret-provence-alpes-cote-azure\data\exports\mart_seuil.parquet")),
+				    Colonnes = Table.SelectColumns(Source, {"code_dep", "nom_departement", "est_paca", "annee", "seuil", "perimetre", "feux_connus", "jours_bulletin", "jours_declenches", "jours_declenches_avec_feu", "fausses_alertes", "feux_manques", "jours_avec_feu_manques", "surface_manquee_ha"}),
+				    Types = Table.TransformColumnTypes(Colonnes, {{"code_dep", type text}, {"nom_departement", type text}, {"est_paca", type logical}, {"annee", Int64.Type}, {"seuil", Int64.Type}, {"perimetre", type text}, {"feux_connus", type logical}, {"jours_bulletin", Int64.Type}, {"jours_declenches", Int64.Type}, {"jours_declenches_avec_feu", Int64.Type}, {"fausses_alertes", Int64.Type}, {"feux_manques", Int64.Type}, {"jours_avec_feu_manques", Int64.Type}, {"surface_manquee_ha", type number}})
+				in
+				    Types
+

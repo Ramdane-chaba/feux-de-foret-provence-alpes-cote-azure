@@ -1,0 +1,29 @@
+table Calendrier
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yyyy
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+	column 'Année'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Année]
+
+	column Mois
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mois]
+
+	partition Calendrier = calculated
+		mode: import
+		source = ADDCOLUMNS(CALENDAR(DATE(2006, 1, 1), DATE(2026, 12, 31)), "Année", YEAR([Date]), "Mois", MONTH([Date]))
+

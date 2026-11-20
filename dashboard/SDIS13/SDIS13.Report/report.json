@@ -1,0 +1,622 @@
+{
+  "config": "{\"version\": \"5.43\", \"themeCollection\": {}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "name": "synthese",
+      "displayName": "1. Synthèse",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 1,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t01\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 1, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Saison feux 2027 : où renforcer, et à quel seuil ?\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Synthèse pour la direction du SDIS 13 · Bouches-du-Rhône · saisons 2024-2025\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 2,
+          "width": 236,
+          "height": 120,
+          "config": "{\"name\": \"v02\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 90, \"z\": 2, \"width\": 236, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I3 Part feux couverts N3\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I3 Part feux couverts N3\"}, \"Name\": \"fait_feu_enrichi.I3 Part feux couverts N3\", \"NativeReferenceName\": \"I3 Part feux couverts N3\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feux couverts au niveau 3'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 90,
+          "z": 3,
+          "width": 236,
+          "height": 120,
+          "config": "{\"name\": \"v03\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 90, \"z\": 3, \"width\": 236, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_seuil.Jours de renfort N3\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort N3\"}, \"Name\": \"mart_seuil.Jours de renfort N3\", \"NativeReferenceName\": \"Jours de renfort N3\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Jours de renfort au niveau 3'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 90,
+          "z": 4,
+          "width": 236,
+          "height": 120,
+          "config": "{\"name\": \"v04\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 90, \"z\": 4, \"width\": 236, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Part feux hors periode indice\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Part feux hors periode indice\"}, \"Name\": \"fait_feu_enrichi.Part feux hors periode indice\", \"NativeReferenceName\": \"Part feux hors periode indice\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feux hors saison de l''indice'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 90,
+          "z": 5,
+          "width": 236,
+          "height": 120,
+          "config": "{\"name\": \"v05\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 90, \"z\": 5, \"width\": 236, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I1 Part grands feux prioritaires\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I1 Part grands feux prioritaires\"}, \"Name\": \"fait_feu_enrichi.I1 Part grands feux prioritaires\", \"NativeReferenceName\": \"I1 Part grands feux prioritaires\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Grands feux, 18 communes'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 90,
+          "z": 6,
+          "width": 236,
+          "height": 120,
+          "config": "{\"name\": \"v06\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 90, \"z\": 6, \"width\": 236, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I1 Garde-fou autres communes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I1 Garde-fou autres communes\"}, \"Name\": \"fait_feu_enrichi.I1 Garde-fou autres communes\", \"NativeReferenceName\": \"I1 Garde-fou autres communes\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Grands feux, autres communes'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 225,
+          "z": 7,
+          "width": 610,
+          "height": 445,
+          "config": "{\"name\": \"v07\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 225, \"z\": 7, \"width\": 610, \"height\": 445}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"mart_seuil.seuil\", \"active\": true}], \"Y\": [{\"queryRef\": \"mart_seuil.Jours de renfort\"}, {\"queryRef\": \"mart_seuil.Feux manqués\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"seuil\"}, \"Name\": \"mart_seuil.seuil\", \"NativeReferenceName\": \"seuil\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort\"}, \"Name\": \"mart_seuil.Jours de renfort\", \"NativeReferenceName\": \"Jours de renfort\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Feux manqués\"}, \"Name\": \"mart_seuil.Feux manqués\", \"NativeReferenceName\": \"Feux manqués\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Au niveau 3, le renfort tient 78 jours, mais la moitié des feux partent hors renfort'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 225,
+          "z": 8,
+          "width": 610,
+          "height": 445,
+          "config": "{\"name\": \"v08\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 225, \"z\": 8, \"width\": 610, \"height\": 445}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.nom_commune\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Nb feux communes prioritaires 2006-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"nom_commune\"}, \"Name\": \"fait_feu_enrichi.nom_commune\", \"NativeReferenceName\": \"nom_commune\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Nb feux communes prioritaires 2006-2025\"}, \"Name\": \"fait_feu_enrichi.Nb feux communes prioritaires 2006-2025\", \"NativeReferenceName\": \"Nb feux communes prioritaires 2006-2025\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Nb feux communes prioritaires 2006-2025\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'18 communes regroupent la moitié des départs de feu du 13 (2006-2025)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 9,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t09\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 9, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "indicateurs",
+      "displayName": "2. Indicateurs",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 10,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t10\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 10, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Le jeu d'indicateurs du SDIS 13\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Chaque indicateur est comparé à une référence · Bouches-du-Rhône\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 85,
+          "z": 11,
+          "width": 1240,
+          "height": 26,
+          "config": "{\"name\": \"t11\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 85, \"z\": 11, \"width\": 1240, \"height\": 26}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Où en est-on ? (saison 2025 comparée à la moyenne 2015-2024)\", \"textStyle\": {\"fontSize\": \"12pt\", \"fontWeight\": \"bold\", \"color\": \"#E8590C\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 113,
+          "z": 12,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v12\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 113, \"z\": 12, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 2025\"}, \"Name\": \"fait_feu_enrichi.Feux 13 2025\", \"NativeReferenceName\": \"Feux 13 2025\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Départs de feu en 2025'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 113,
+          "z": 13,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v13\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 113, \"z\": 13, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Ecart feux 2025 vs moyenne\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Ecart feux 2025 vs moyenne\"}, \"Name\": \"fait_feu_enrichi.Ecart feux 2025 vs moyenne\", \"NativeReferenceName\": \"Ecart feux 2025 vs moyenne\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Écart à la moyenne (feux)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 113,
+          "z": 14,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v14\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 113, \"z\": 14, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Surface 13 2025 (ha)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Surface 13 2025 (ha)\"}, \"Name\": \"fait_feu_enrichi.Surface 13 2025 (ha)\", \"NativeReferenceName\": \"Surface 13 2025 (ha)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Hectares brûlés en 2025'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 113,
+          "z": 15,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v15\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 113, \"z\": 15, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Ecart surface 2025 vs moyenne\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Ecart surface 2025 vs moyenne\"}, \"Name\": \"fait_feu_enrichi.Ecart surface 2025 vs moyenne\", \"NativeReferenceName\": \"Ecart surface 2025 vs moyenne\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Écart à la moyenne (hectares)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 113,
+          "z": 16,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v16\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 113, \"z\": 16, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Surface moyenne par feu 2024-2025 (ha)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Surface moyenne par feu 2024-2025 (ha)\"}, \"Name\": \"fait_feu_enrichi.Surface moyenne par feu 2024-2025 (ha)\", \"NativeReferenceName\": \"Surface moyenne par feu 2024-2025 (ha)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Hectares par feu (2024-2025)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 280,
+          "z": 17,
+          "width": 1240,
+          "height": 26,
+          "config": "{\"name\": \"t17\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 280, \"z\": 17, \"width\": 1240, \"height\": 26}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Le seuil : niveau 3 de la Météo des forêts (2024-2025)\", \"textStyle\": {\"fontSize\": \"12pt\", \"fontWeight\": \"bold\", \"color\": \"#E8590C\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 308,
+          "z": 18,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v18\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 308, \"z\": 18, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I3 Part feux couverts N3\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I3 Part feux couverts N3\"}, \"Name\": \"fait_feu_enrichi.I3 Part feux couverts N3\", \"NativeReferenceName\": \"I3 Part feux couverts N3\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'I3 · Feux couverts'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 308,
+          "z": 19,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v19\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 308, \"z\": 19, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_seuil.Jours de renfort N3\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort N3\"}, \"Name\": \"mart_seuil.Jours de renfort N3\", \"NativeReferenceName\": \"Jours de renfort N3\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Jours de renfort'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 308,
+          "z": 20,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v20\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 308, \"z\": 20, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_seuil.Part fausses alertes N3\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Part fausses alertes N3\"}, \"Name\": \"mart_seuil.Part fausses alertes N3\", \"NativeReferenceName\": \"Part fausses alertes N3\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Garde-fou · Jours de renfort sans feu'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 308,
+          "z": 21,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v21\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 308, \"z\": 21, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Part feux hors periode indice\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Part feux hors periode indice\"}, \"Name\": \"fait_feu_enrichi.Part feux hors periode indice\", \"NativeReferenceName\": \"Part feux hors periode indice\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feux hors saison de l''indice'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 308,
+          "z": 22,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v22\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 308, \"z\": 22, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I2 Part alertes plages patrouille\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I2 Part alertes plages patrouille\"}, \"Name\": \"fait_feu_enrichi.I2 Part alertes plages patrouille\", \"NativeReferenceName\": \"I2 Part alertes plages patrouille\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'I2 · Alertes entre 12 h et 20 h'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 475,
+          "z": 23,
+          "width": 1240,
+          "height": 26,
+          "config": "{\"name\": \"t23\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 475, \"z\": 23, \"width\": 1240, \"height\": 26}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Où renforcer ? Les 18 communes prioritaires (hors Marseille)\", \"textStyle\": {\"fontSize\": \"12pt\", \"fontWeight\": \"bold\", \"color\": \"#E8590C\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 503,
+          "z": 24,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v24\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 503, \"z\": 24, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I1 Part grands feux prioritaires\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I1 Part grands feux prioritaires\"}, \"Name\": \"fait_feu_enrichi.I1 Part grands feux prioritaires\", \"NativeReferenceName\": \"I1 Part grands feux prioritaires\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'I1 · Grands feux (> 1 ha), 18 communes'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 503,
+          "z": 25,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v25\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 503, \"z\": 25, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.I1 Garde-fou autres communes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I1 Garde-fou autres communes\"}, \"Name\": \"fait_feu_enrichi.I1 Garde-fou autres communes\", \"NativeReferenceName\": \"I1 Garde-fou autres communes\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Garde-fou · Grands feux, autres communes'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 503,
+          "z": 26,
+          "width": 236,
+          "height": 110,
+          "config": "{\"name\": \"v26\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 503, \"z\": 26, \"width\": 236, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.Part feux dans les 18 communes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Part feux dans les 18 communes\"}, \"Name\": \"fait_feu_enrichi.Part feux dans les 18 communes\", \"NativeReferenceName\": \"Part feux dans les 18 communes\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Part des feux dans les 18 communes (2006-2025)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 503,
+          "z": 27,
+          "width": 490,
+          "height": 140,
+          "config": "{\"name\": \"t27\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 503, \"z\": 27, \"width\": 490, \"height\": 140}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Lecture\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Un taux n'est lu qu'avec son garde-fou : moins de feux manqués doit se payer en jours de renfort, moins de grands feux dans les 18 communes ne doit pas en créer ailleurs.\", \"textStyle\": {\"fontSize\": \"10pt\", \"fontWeight\": \"normal\", \"color\": \"#9CA3AF\"}}]}, {\"textRuns\": [{\"value\": \"Valeurs cibles à fixer avec la direction.\", \"textStyle\": {\"fontSize\": \"10pt\", \"fontWeight\": \"normal\", \"color\": \"#9CA3AF\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 28,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t28\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 28, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "seuil",
+      "displayName": "3. Le seuil",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 29,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t29\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 29, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Le seuil : chaque niveau a un coût et un angle mort\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Q3 et Q4 · feux et jours de renfort selon le niveau de la Météo des forêts · Bouches-du-Rhône, 2024-2025\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 30,
+          "width": 610,
+          "height": 290,
+          "config": "{\"name\": \"v30\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 90, \"z\": 30, \"width\": 610, \"height\": 290}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.niveau\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 2024-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"niveau\"}, \"Name\": \"fait_feu_enrichi.niveau\", \"NativeReferenceName\": \"niveau\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 2024-2025\"}, \"Name\": \"fait_feu_enrichi.Feux 13 2024-2025\", \"NativeReferenceName\": \"Feux 13 2024-2025\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Un feu sur quatre part hors de la saison de l''indice (barre vide)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 90,
+          "z": 31,
+          "width": 610,
+          "height": 290,
+          "config": "{\"name\": \"v31\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 90, \"z\": 31, \"width\": 610, \"height\": 290}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"mart_seuil.seuil\", \"active\": true}], \"Series\": [{\"queryRef\": \"mart_seuil.annee\"}], \"Y\": [{\"queryRef\": \"mart_seuil.Jours de renfort\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"seuil\"}, \"Name\": \"mart_seuil.seuil\", \"NativeReferenceName\": \"seuil\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"annee\"}, \"Name\": \"mart_seuil.annee\", \"NativeReferenceName\": \"annee\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort\"}, \"Name\": \"mart_seuil.Jours de renfort\", \"NativeReferenceName\": \"Jours de renfort\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Au niveau 3, les jours de renfort passent de 19 en 2024 à 59 en 2025'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 395,
+          "z": 32,
+          "width": 1240,
+          "height": 275,
+          "config": "{\"name\": \"v32\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 395, \"z\": 32, \"width\": 1240, \"height\": 275}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_seuil.seuil\"}, {\"queryRef\": \"mart_seuil.Jours de renfort\"}, {\"queryRef\": \"mart_seuil.Fausses alertes\"}, {\"queryRef\": \"mart_seuil.Feux manqués\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"seuil\"}, \"Name\": \"mart_seuil.seuil\", \"NativeReferenceName\": \"seuil\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort\"}, \"Name\": \"mart_seuil.Jours de renfort\", \"NativeReferenceName\": \"Jours de renfort\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Fausses alertes\"}, \"Name\": \"mart_seuil.Fausses alertes\", \"NativeReferenceName\": \"Fausses alertes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Feux manqués\"}, \"Name\": \"mart_seuil.Feux manqués\", \"NativeReferenceName\": \"Feux manqués\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Pour chaque seuil : le coût (jours de renfort), les jours sans feu et les feux partis sans renfort'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 33,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t33\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 33, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Lecture : déclencher au seuil N = renforcer tous les jours où le niveau prévu atteint N. Le jour du danger = la date de diffusion du bulletin + 1 jour. Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "meteo",
+      "displayName": "4. Météo des feux manqués",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 34,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t34\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 34, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Les feux manqués : que disait la météo ?\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Jours de saison de l'indice, Bouches-du-Rhône, 2024-2025 · stations Météo-France du département\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 35,
+          "width": 400,
+          "height": 120,
+          "config": "{\"name\": \"v35\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 90, \"z\": 35, \"width\": 400, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_jour_departement.Jours sous le seuil avec feu\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Jours sous le seuil avec feu\"}, \"Name\": \"mart_jour_departement.Jours sous le seuil avec feu\", \"NativeReferenceName\": \"Jours sous le seuil avec feu\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Jours sous le niveau 3 avec au moins un feu'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 440,
+          "y": 90,
+          "z": 36,
+          "width": 400,
+          "height": 120,
+          "config": "{\"name\": \"v36\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 440, \"y\": 90, \"z\": 36, \"width\": 400, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_jour_departement.Feux manques jours chauds (Tx >= 30)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Feux manques jours chauds (Tx >= 30)\"}, \"Name\": \"mart_jour_departement.Feux manques jours chauds (Tx >= 30)\", \"NativeReferenceName\": \"Feux manques jours chauds (Tx >= 30)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feux manqués partis un jour à 30 °C ou plus'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 90,
+          "z": 37,
+          "width": 400,
+          "height": 120,
+          "config": "{\"name\": \"v37\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 90, \"z\": 37, \"width\": 400, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"mart_jour_departement.Part feux couverts N3 (jours)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Part feux couverts N3 (jours)\"}, \"Name\": \"mart_jour_departement.Part feux couverts N3 (jours)\", \"NativeReferenceName\": \"Part feux couverts N3 (jours)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feux couverts au niveau 3 (calcul par jour)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#FF8A3D'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#9CA3AF'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"9D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 225,
+          "z": 38,
+          "width": 410,
+          "height": 445,
+          "config": "{\"name\": \"v38\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 225, \"z\": 38, \"width\": 410, \"height\": 445}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"mart_jour_departement.niveau\", \"active\": true}], \"Series\": [{\"queryRef\": \"mart_jour_departement.jour_avec_feu\"}], \"Y\": [{\"queryRef\": \"mart_jour_departement.Temperature max moyenne (C)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"niveau\"}, \"Name\": \"mart_jour_departement.niveau\", \"NativeReferenceName\": \"niveau\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"jour_avec_feu\"}, \"Name\": \"mart_jour_departement.jour_avec_feu\", \"NativeReferenceName\": \"jour_avec_feu\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Temperature max moyenne (C)\"}, \"Name\": \"mart_jour_departement.Temperature max moyenne (C)\", \"NativeReferenceName\": \"Temperature max moyenne (C)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Température maximale (°C) selon le niveau, jours avec et sans feu'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 435,
+          "y": 225,
+          "z": 39,
+          "width": 410,
+          "height": 445,
+          "config": "{\"name\": \"v39\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 435, \"y\": 225, \"z\": 39, \"width\": 410, \"height\": 445}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"mart_jour_departement.niveau\", \"active\": true}], \"Series\": [{\"queryRef\": \"mart_jour_departement.jour_avec_feu\"}], \"Y\": [{\"queryRef\": \"mart_jour_departement.Humidite min moyenne (%)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"niveau\"}, \"Name\": \"mart_jour_departement.niveau\", \"NativeReferenceName\": \"niveau\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"jour_avec_feu\"}, \"Name\": \"mart_jour_departement.jour_avec_feu\", \"NativeReferenceName\": \"jour_avec_feu\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Humidite min moyenne (%)\"}, \"Name\": \"mart_jour_departement.Humidite min moyenne (%)\", \"NativeReferenceName\": \"Humidite min moyenne (%)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Humidité minimale (%) selon le niveau, jours avec et sans feu'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 850,
+          "y": 225,
+          "z": 40,
+          "width": 410,
+          "height": 445,
+          "config": "{\"name\": \"v40\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 850, \"y\": 225, \"z\": 40, \"width\": 410, \"height\": 445}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"mart_jour_departement.niveau\", \"active\": true}], \"Series\": [{\"queryRef\": \"mart_jour_departement.jour_avec_feu\"}], \"Y\": [{\"queryRef\": \"mart_jour_departement.Rafale max moyenne (km/h)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"j\", \"Entity\": \"mart_jour_departement\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"niveau\"}, \"Name\": \"mart_jour_departement.niveau\", \"NativeReferenceName\": \"niveau\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"jour_avec_feu\"}, \"Name\": \"mart_jour_departement.jour_avec_feu\", \"NativeReferenceName\": \"jour_avec_feu\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"j\"}}, \"Property\": \"Rafale max moyenne (km/h)\"}, \"Name\": \"mart_jour_departement.Rafale max moyenne (km/h)\", \"NativeReferenceName\": \"Rafale max moyenne (km/h)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Rafale maximale (km/h) selon le niveau, jours avec et sans feu'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 41,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t41\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 41, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Lecture : si les jours de niveau 1-2 avec feu sont aussi chauds, secs ou venteux que les jours de niveau 3, l'indice sous-estime ces jours-là. Météo : moyenne des stations du 13 (maximum pour la température et la rafale, minimum pour l'humidité). Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "ou_quand",
+      "displayName": "5. Où et quand",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 42,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t42\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 42, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Où et quand partent les feux du 13 ?\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Q1 et Q2 · tous les départs de feu de la BDIFF, 2006-2025\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 43,
+          "width": 610,
+          "height": 280,
+          "config": "{\"name\": \"v43\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 90, \"z\": 43, \"width\": 610, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.annee\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 2006-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"annee\"}, \"Name\": \"fait_feu_enrichi.annee\", \"NativeReferenceName\": \"annee\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 2006-2025\"}, \"Name\": \"fait_feu_enrichi.Feux 13 2006-2025\", \"NativeReferenceName\": \"Feux 13 2006-2025\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'De 95 à 428 feux par an : une seule saison ne suffit pas pour juger'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 90,
+          "z": 44,
+          "width": 300,
+          "height": 280,
+          "config": "{\"name\": \"v44\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 90, \"z\": 44, \"width\": 300, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.mois\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 2006-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"mois\"}, \"Name\": \"fait_feu_enrichi.mois\", \"NativeReferenceName\": \"mois\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 2006-2025\"}, \"Name\": \"fait_feu_enrichi.Feux 13 2006-2025\", \"NativeReferenceName\": \"Feux 13 2006-2025\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Juillet et août font plus de la moitié des départs'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 960,
+          "y": 90,
+          "z": 45,
+          "width": 300,
+          "height": 280,
+          "config": "{\"name\": \"v45\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 960, \"y\": 90, \"z\": 45, \"width\": 300, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.heure\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 2006-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"heure\"}, \"Name\": \"fait_feu_enrichi.heure\", \"NativeReferenceName\": \"heure\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 2006-2025\"}, \"Name\": \"fait_feu_enrichi.Feux 13 2006-2025\", \"NativeReferenceName\": \"Feux 13 2006-2025\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Les alertes culminent entre 14 h et 17 h'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 385,
+          "z": 46,
+          "width": 930,
+          "height": 285,
+          "config": "{\"name\": \"v46\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 385, \"z\": 46, \"width\": 930, \"height\": 285}}], \"singleVisual\": {\"visualType\": \"scatterChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fait_feu_enrichi.nom_commune\", \"active\": true}], \"X\": [{\"queryRef\": \"fait_feu_enrichi.Feux 13 hors Marseille\"}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Surface 13 hors Marseille (ha)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"nom_commune\"}, \"Name\": \"fait_feu_enrichi.nom_commune\", \"NativeReferenceName\": \"nom_commune\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux 13 hors Marseille\"}, \"Name\": \"fait_feu_enrichi.Feux 13 hors Marseille\", \"NativeReferenceName\": \"Feux 13 hors Marseille\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Surface 13 hors Marseille (ha)\"}, \"Name\": \"fait_feu_enrichi.Surface 13 hors Marseille (ha)\", \"NativeReferenceName\": \"Surface 13 hors Marseille (ha)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Beaucoup de feux ne veut pas dire beaucoup d''hectares : chaque point est une commune (hors Marseille)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 385,
+          "z": 47,
+          "width": 295,
+          "height": 285,
+          "config": "{\"name\": \"v47\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 385, \"z\": 47, \"width\": 295, \"height\": 285}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.nom_commune\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"nom_commune\"}, \"Name\": \"fait_feu_enrichi.nom_commune\", \"NativeReferenceName\": \"nom_commune\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Filtrer la page par commune'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 48,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t48\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 48, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Heure = heure de la première alerte, qui suit le départ du feu. Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "paca",
+      "displayName": "6. Comparaison PACA",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 5,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 49,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t49\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 49, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Le 13 face aux autres départements de PACA\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Q5 · même indice, mêmes saisons, autres territoires\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 50,
+          "width": 400,
+          "height": 580,
+          "config": "{\"name\": \"v50\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 90, \"z\": 50, \"width\": 400, \"height\": 580}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Departements.Département\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.Feux par an 2006-2025\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"Departements\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Département\"}, \"Name\": \"Departements.Département\", \"NativeReferenceName\": \"Département\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux par an 2006-2025\"}, \"Name\": \"fait_feu_enrichi.Feux par an 2006-2025\", \"NativeReferenceName\": \"Feux par an 2006-2025\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Feux par an 2006-2025\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Le 13 a le plus de départs de feu de la région (feux par an)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 440,
+          "y": 90,
+          "z": 51,
+          "width": 400,
+          "height": 580,
+          "config": "{\"name\": \"v51\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 440, \"y\": 90, \"z\": 51, \"width\": 400, \"height\": 580}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Departements.Département\", \"active\": true}], \"Y\": [{\"queryRef\": \"fait_feu_enrichi.I3 couverts N3 par departement\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"Departements\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Département\"}, \"Name\": \"Departements.Département\", \"NativeReferenceName\": \"Département\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I3 couverts N3 par departement\"}, \"Name\": \"fait_feu_enrichi.I3 couverts N3 par departement\", \"NativeReferenceName\": \"I3 couverts N3 par departement\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"I3 couverts N3 par departement\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Part des feux couverts au niveau 3, par département (2024-2025)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 90,
+          "z": 52,
+          "width": 400,
+          "height": 580,
+          "config": "{\"name\": \"v52\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 90, \"z\": 52, \"width\": 400, \"height\": 580}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Departements.Département\", \"active\": true}], \"Y\": [{\"queryRef\": \"mart_seuil.Jours de renfort N3 par departement\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"Departements\", \"Type\": 0}, {\"Name\": \"s\", \"Entity\": \"mart_seuil\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Département\"}, \"Name\": \"Departements.Département\", \"NativeReferenceName\": \"Département\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort N3 par departement\"}, \"Name\": \"mart_seuil.Jours de renfort N3 par departement\", \"NativeReferenceName\": \"Jours de renfort N3 par departement\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"Jours de renfort N3 par departement\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Jours de renfort au niveau 3, par département (2024-2025)'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 53,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t53\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 53, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "explorer",
+      "displayName": "7. Explorer",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0B1220'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}]}}",
+      "filters": "[]",
+      "ordinal": 6,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 54,
+          "width": 1240,
+          "height": 70,
+          "config": "{\"name\": \"t54\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 54, \"width\": 1240, \"height\": 70}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Explorer : descendre dans le détail sans aide\", \"textStyle\": {\"fontSize\": \"22pt\", \"fontWeight\": \"bold\", \"color\": \"#F9FAFB\"}}]}, {\"textRuns\": [{\"value\": \"Exploration autonome · choisir un département, une année, une commune, puis décomposer les départs de feu\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"normal\", \"color\": \"#FF8A3D\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 85,
+          "z": 55,
+          "width": 300,
+          "height": 140,
+          "config": "{\"name\": \"v55\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 85, \"z\": 55, \"width\": 300, \"height\": 140}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Departements.Département\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"Departements\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Département\"}, \"Name\": \"Departements.Département\", \"NativeReferenceName\": \"Département\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Département'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 235,
+          "z": 56,
+          "width": 300,
+          "height": 140,
+          "config": "{\"name\": \"v56\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 235, \"z\": 56, \"width\": 300, \"height\": 140}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Calendrier.Année\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"Calendrier\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"Année\"}, \"Name\": \"Calendrier.Année\", \"NativeReferenceName\": \"Année\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Année'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 385,
+          "z": 57,
+          "width": 300,
+          "height": 285,
+          "config": "{\"name\": \"v57\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 385, \"z\": 57, \"width\": 300, \"height\": 285}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"fait_feu_enrichi.nom_commune\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"nom_commune\"}, \"Name\": \"fait_feu_enrichi.nom_commune\", \"NativeReferenceName\": \"nom_commune\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Commune'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 340,
+          "y": 85,
+          "z": 58,
+          "width": 920,
+          "height": 585,
+          "config": "{\"name\": \"v58\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 340, \"y\": 85, \"z\": 58, \"width\": 920, \"height\": 585}}], \"singleVisual\": {\"visualType\": \"decompositionTreeVisual\", \"projections\": {\"Analyze\": [{\"queryRef\": \"fait_feu_enrichi.Nb feux\"}], \"ExplainBy\": [{\"queryRef\": \"Departements.Département\"}, {\"queryRef\": \"fait_feu_enrichi.nom_commune\"}, {\"queryRef\": \"Calendrier.Année\"}, {\"queryRef\": \"Calendrier.Mois\"}, {\"queryRef\": \"fait_feu_enrichi.heure\"}, {\"queryRef\": \"fait_feu_enrichi.niveau\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fait_feu_enrichi\", \"Type\": 0}, {\"Name\": \"d\", \"Entity\": \"Departements\", \"Type\": 0}, {\"Name\": \"c\", \"Entity\": \"Calendrier\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Nb feux\"}, \"Name\": \"fait_feu_enrichi.Nb feux\", \"NativeReferenceName\": \"Nb feux\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Département\"}, \"Name\": \"Departements.Département\", \"NativeReferenceName\": \"Département\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"nom_commune\"}, \"Name\": \"fait_feu_enrichi.nom_commune\", \"NativeReferenceName\": \"nom_commune\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"Année\"}, \"Name\": \"Calendrier.Année\", \"NativeReferenceName\": \"Année\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"Mois\"}, \"Name\": \"Calendrier.Mois\", \"NativeReferenceName\": \"Mois\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"heure\"}, \"Name\": \"fait_feu_enrichi.heure\", \"NativeReferenceName\": \"heure\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"niveau\"}, \"Name\": \"fait_feu_enrichi.niveau\", \"NativeReferenceName\": \"niveau\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cliquer sur + pour décomposer les feux par département, commune, année, mois, heure ou niveau de danger'\"}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#F3F4F6'\"}}}}}}}], \"background\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#111827'\"}}}}}, \"transparency\": {\"expr\": {\"Literal\": {\"Value\": \"0D\"}}}}}], \"border\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#243044'\"}}}}}, \"radius\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 680,
+          "z": 59,
+          "width": 1240,
+          "height": 35,
+          "config": "{\"name\": \"t59\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 680, \"z\": 59, \"width\": 1240, \"height\": 35}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Sources : BDIFF (export PACA 2006-2025) et Météo des forêts (Météo-France). Bouches-du-Rhône. Croisement feux × indice possible sur 2024 et 2025 seulement. Marseille est défendue par le BMPM.\", \"textStyle\": {\"fontSize\": \"9pt\", \"fontWeight\": \"normal\", \"color\": \"#6B7280\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    }
+  ]
+}

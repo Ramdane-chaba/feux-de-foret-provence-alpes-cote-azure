@@ -10,7 +10,14 @@ import re
 import urllib.request
 from pathlib import Path
 
-from pipeline.config import CLIMATO_GROUPES, CLIMATO_PERIODES, DEPARTEMENTS_CLIMATO, MDF_ANNEES
+from pipeline.config import (
+    CLIMATO_GROUPES,
+    CLIMATO_PERIODES,
+    CONTOURS_URL,
+    DEPARTEMENT_SDIS,
+    DEPARTEMENTS_CLIMATO,
+    MDF_ANNEES,
+)
 from pipeline.chemins import DATA_RAW
 
 API_DATASET = "https://www.data.gouv.fr/api/1/datasets/{id}/"
@@ -64,6 +71,16 @@ def telecharger_interventions() -> None:
         trouve = re.fullmatch(r"interventions-SIS-(\d{4})", r["title"], flags=re.IGNORECASE)
         if trouve:
             telecharger(r["url"], DATA_RAW / "interventions" / f"interventions_{trouve.group(1)}.csv")
+
+
+def telecharger_contours(dep: str = DEPARTEMENT_SDIS) -> Path:
+    """Contours des communes du département (GeoJSON), pour la carte de l'application web.
+
+    N'est pas appelé par main() : le pipeline de données n'en a pas besoin (pipeline/exporter_web.py l'appelle).
+    """
+    cible = DATA_RAW / "geo" / f"communes_{dep}.geojson"
+    telecharger(CONTOURS_URL.format(dep=dep), cible)
+    return cible
 
 
 def main() -> None:

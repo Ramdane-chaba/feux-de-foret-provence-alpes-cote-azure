@@ -1,0 +1,139 @@
+table mart_jour_departement
+
+	measure 'Feux (jours)' = SUM(mart_jour_departement[nb_feux])
+		formatString: 0
+
+	measure 'Jours avec bulletin' = CALCULATE(COUNTROWS(mart_jour_departement), NOT ISBLANK(mart_jour_departement[niveau]))
+		formatString: 0
+
+	measure 'Part feux couverts N3 (jours)' = DIVIDE(CALCULATE([Feux (jours)], mart_jour_departement[niveau] >= 3), CALCULATE([Feux (jours)], NOT ISBLANK(mart_jour_departement[niveau])))
+		formatString: 0.0%
+
+	measure 'Temperature max moyenne (C)' = CALCULATE(AVERAGE(mart_jour_departement[tx_max_c]), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, NOT ISBLANK(mart_jour_departement[niveau]))
+		formatString: 0.0
+
+	measure 'Humidite min moyenne (%)' = CALCULATE(AVERAGE(mart_jour_departement[un_min_pct]), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, NOT ISBLANK(mart_jour_departement[niveau]))
+		formatString: 0
+
+	measure 'Rafale max moyenne (km/h)' = CALCULATE(AVERAGE(mart_jour_departement[fxi3s_max_ms]) * 3.6, mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, NOT ISBLANK(mart_jour_departement[niveau]))
+		formatString: 0
+
+	measure 'Pluie veille moyenne (mm)' = CALCULATE(AVERAGE(mart_jour_departement[rr_veille_mm]), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, NOT ISBLANK(mart_jour_departement[niveau]))
+		formatString: 0.0
+
+	measure 'Feux manques jours chauds (Tx >= 30)' = DIVIDE(CALCULATE(SUM(mart_jour_departement[nb_feux]), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, mart_jour_departement[niveau] < 3, mart_jour_departement[tx_max_c] >= 30), CALCULATE(SUM(mart_jour_departement[nb_feux]), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, mart_jour_departement[niveau] < 3))
+		formatString: 0.0%
+
+	measure 'Jours sous le seuil avec feu' = CALCULATE(COUNTROWS(mart_jour_departement), mart_jour_departement[code_dep] = "13", mart_jour_departement[annee] IN {2024, 2025}, mart_jour_departement[niveau] < 3, mart_jour_departement[jour_avec_feu] = TRUE())
+		formatString: 0
+
+	column code_dep
+		dataType: string
+		summarizeBy: none
+		sourceColumn: code_dep
+
+	column nom_departement
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nom_departement
+
+	column est_paca
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: est_paca
+
+	column jour
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: jour
+
+	column annee
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: annee
+
+	column mois
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: mois
+
+	column jour_semaine
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: jour_semaine
+
+	column niveau
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: niveau
+
+	column feux_connus
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: feux_connus
+
+	column nb_feux
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: nb_feux
+
+	column surface_ha
+		dataType: double
+		summarizeBy: none
+		sourceColumn: surface_ha
+
+	column nb_feux_hors_marseille
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: nb_feux_hors_marseille
+
+	column surface_ha_hors_marseille
+		dataType: double
+		summarizeBy: none
+		sourceColumn: surface_ha_hors_marseille
+
+	column jour_avec_feu
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: jour_avec_feu
+
+	column jour_avec_feu_hors_marseille
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: jour_avec_feu_hors_marseille
+
+	column rr_veille_mm
+		dataType: double
+		summarizeBy: none
+		sourceColumn: rr_veille_mm
+
+	column tx_max_c
+		dataType: double
+		summarizeBy: none
+		sourceColumn: tx_max_c
+
+	column fxi3s_max_ms
+		dataType: double
+		summarizeBy: none
+		sourceColumn: fxi3s_max_ms
+
+	column un_min_pct
+		dataType: double
+		summarizeBy: none
+		sourceColumn: un_min_pct
+
+	column nb_stations
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: nb_stations
+
+	partition mart_jour_departement = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\ouiss\OneDrive\Documents\feux-de-foret-provence-alpes-cote-azure\data\exports\mart_jour_departement.parquet")),
+				    Colonnes = Table.SelectColumns(Source, {"code_dep", "nom_departement", "est_paca", "jour", "annee", "mois", "jour_semaine", "niveau", "feux_connus", "nb_feux", "surface_ha", "nb_feux_hors_marseille", "surface_ha_hors_marseille", "jour_avec_feu", "jour_avec_feu_hors_marseille", "rr_veille_mm", "tx_max_c", "fxi3s_max_ms", "un_min_pct", "nb_stations"}),
+				    Types = Table.TransformColumnTypes(Colonnes, {{"code_dep", type text}, {"nom_departement", type text}, {"est_paca", type logical}, {"jour", type date}, {"annee", Int64.Type}, {"mois", Int64.Type}, {"jour_semaine", Int64.Type}, {"niveau", Int64.Type}, {"feux_connus", type logical}, {"nb_feux", Int64.Type}, {"surface_ha", type number}, {"nb_feux_hors_marseille", Int64.Type}, {"surface_ha_hors_marseille", type number}, {"jour_avec_feu", type logical}, {"jour_avec_feu_hors_marseille", type logical}, {"rr_veille_mm", type number}, {"tx_max_c", type number}, {"fxi3s_max_ms", type number}, {"un_min_pct", type number}, {"nb_stations", Int64.Type}})
+				in
+				    Types
+

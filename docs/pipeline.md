@@ -1,6 +1,6 @@
 # Pipeline de données
 
-Dernière mise à jour : 2026-11-19
+Dernière mise à jour : 2026-11-20
 
 Ce document explique comment reconstruire la base `data/sdis13.duckdb` à partir des sources, ce que contient chaque couche, et ce que le pipeline ne sait pas faire. Il met en œuvre le [modèle de données](modele-donnees.md) (branche `docs/modele-donnees`) et la pile de [D018](decisions.md) : Python 3.13, `uv`, DuckDB, `pytest`.
 
@@ -207,7 +207,24 @@ La liste des 18 communes prioritaires est figée dans `sql/gold/45_ref_communes_
 
 Les tests (`tests/test_export.py`) vérifient, pour chaque table, que le fichier existe, qu'il a les mêmes colonnes, les mêmes types et exactement les mêmes lignes que la table gold, et que les chiffres des fiches d'indicateurs s'y retrouvent (240 bulletins du 13 sur 2024-2025, 78 jours au niveau 3 ou plus, 489 feux, dont 355 dans la période de publication et 177 un jour de niveau 3 ou plus). `tests/test_kpi_parquet.py` recalcule I1, I2 et I3 à partir des seuls fichiers Parquet, pour chaque valeur de paramètre des fiches, et retrouve les valeurs des fiches.
 
-## 7. Limites connues
+## 7. Export pour l'application web
+
+L'application web (`dashboard/web/`, voir son [README](../dashboard/web/README.md)) lit des fichiers JSON, un par page, écrits par `pipeline/exporter_web.py` :
+
+```
+uv run python -m pipeline.exporter_web              (télécharge le fond de carte s'il manque)
+uv run python -m pipeline.exporter_web --hors-ligne (n'utilise que les fichiers présents)
+```
+
+- **Source : les fichiers Parquet de `data/exports/`**, pas la base DuckDB. L'application et le rapport Power BI lisent donc les mêmes tables gold, déjà passées par la barrière « modèle ». La commande se lance après `pipeline.construire`.
+- **Paramètres dans `pipeline/config.py`** : seuil de référence (niveau 3, le seuil actuel étant inconnu, D013), plage de patrouille (12 h - 20 h), surface d'un grand feu (1 ha). Ils sont recopiés dans les JSON : l'application ne contient aucun de ces chiffres.
+- **Fond de carte** : les contours des communes du 13 viennent de l'API Découpage administratif (`geo.api.gouv.fr`), sont gardés dans `data/raw/geo/`, puis simplifiés (environ 60 m) pour passer de 1,4 Mo à 140 ko. Sans réseau et sans fichier, l'export continue et la page Carte indique que le fond manque.
+- **Glossaire** : `glossaire.json` est lu dans `docs/glossaire.md` (définition, règle, exemple, statut de chaque entrée).
+- `dashboard/web/public/data/` n'est pas versionné.
+
+`tests/test_export_web.py` vérifie que les valeurs des fiches d'indicateurs se retrouvent dans les JSON (489 feux, 177 couverts sur 355, 78 jours de renfort, I1 et I2), et que les cinq affirmations du récit de l'application restent vraies dans les données.
+
+## 8. Limites connues
 
 - **BDIFF manuelle** : sans export déposé, les tables de feux sont vides et les colonnes de feux de gold valent NULL (jamais 0) : `feux_connus` indique si les feux d'un département et d'une année sont chargés. Le chargement a été vérifié sur l'export PACA 2006-2025 du 2026-11-19 (10 789 feux). Cet export mélange deux fins de ligne (LF pour l'en-tête, CRLF pour les données) : la lecture bronze utilise `strict_mode = false`, sans quoi DuckDB refuse le fichier.
 - **Saison 2026 absente de la BDIFF** : la Météo des forêts couvre 2026, mais la BDIFF n'est pas publiée. L'analyse du seuil porte sur 2024 et 2025 seulement (D012).

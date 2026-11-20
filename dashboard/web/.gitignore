@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Aucune donnée sur GitHub : les JSON sont reconstruits par `npm run donnees` (pipeline/exporter_web.py)
+public/data/
